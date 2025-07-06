@@ -1,0 +1,479 @@
+.header {
+  position: fixed;
+  top: 20px;
+  left: 40px;
+  right: 40px;
+  z-index: 1000;
+  background: transparent;
+  transition: all 0.4s ease;
+  padding: 16px 0;
+  border-radius: 16px;
+}
+
+.header.scrolled {
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 12px 0;
+}
+
+.header.white {
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.header.blue {
+  background: #2563EB;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Логотип */
+.logo {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.header.scrolled .logo {
+  transform: scale(0.9);
+}
+
+.logo svg {
+  display: block;
+}
+
+/* Навигация */
+.navigation {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 32px;
+}
+
+.navItem {
+  margin: 0;
+}
+
+.navLink {
+  color: #1F2937;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.4s ease;
+  position: relative;
+  padding: 8px 0;
+}
+
+.header.blue .navLink {
+  color: #FFFFFF;
+}
+
+.navLink:hover {
+  color: #3B82F6;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #3B82F6;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navLink.active {
+  color: #2563EB;
+}
+
+.navLink.active::after {
+  width: 100%;
+  background: #2563EB;
+}
+
+/* Контакты и CTA */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+/* Email */
+.email {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1F2937;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.4s ease;
+}
+
+.header.blue .email {
+  color: #FFFFFF;
+}
+
+.email:hover {
+  color: #3B82F6;
+}
+
+.email svg {
+  flex-shrink: 0;
+}
+
+/* Мессенджеры */
+.messengers {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.messengerLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #1F2937;
+  transition: all 0.4s ease;
+  border-radius: 6px;
+}
+
+.header.blue .messengerLink {
+  color: #FFFFFF;
+}
+
+.messengerLink:hover {
+  color: #06B6D4;
+  background: rgba(6, 182, 212, 0.1);
+  transform: translateY(-1px);
+}
+
+/* CTA кнопка */
+.ctaButton {
+  background: #2563EB;
+  color: #FFFFFF;
+  border: 1px solid #1E40AF;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ctaButton:hover {
+  background: #1E40AF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+/* Бургер меню */
+.burgerMenu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.burgerLine {
+  width: 100%;
+  height: 2px;
+  background: #1F2937;
+  transition: all 0.4s ease;
+  transform-origin: center;
+}
+
+.header.blue .burgerLine {
+  background: #FFFFFF;
+}
+
+.burgerLine.active:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.burgerLine.active:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerLine.active:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Мобильное меню */
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: #FFFFFF;
+  z-index: 1000;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.3s ease;
+  overflow-y: auto;
+}
+
+.mobileMenuHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #1F2937;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.closeButton:hover {
+  background: #F3F4F6;
+}
+
+/* Мобильная навигация */
+.mobileNavigation {
+  flex: 1;
+  margin-bottom: 32px;
+}
+
+.mobileNavList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobileNavItem {
+  margin: 0;
+}
+
+.mobileNavLink {
+  display: block;
+  color: #1F2937;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 16px 0;
+  border-bottom: 1px solid #F3F4F6;
+  transition: color 0.3s ease;
+}
+
+.mobileNavLink:hover {
+  color: #3B82F6;
+}
+
+/* Мобильные контакты */
+.mobileContacts {
+  margin-bottom: 32px;
+}
+
+.mobileEmail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #1F2937;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 12px 0;
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+
+.mobileEmail:hover {
+  color: #3B82F6;
+}
+
+.mobileMessengers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileMessengerLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #1F2937;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.mobileMessengerLink:hover {
+  color: #06B6D4;
+  background: rgba(6, 182, 212, 0.1);
+}
+
+/* Мобильная CTA кнопка */
+.mobileCtaButton {
+  background: #2563EB;
+  color: #FFFFFF;
+  border: 1px solid #1E40AF;
+  border-radius: 8px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.mobileCtaButton:hover {
+  background: #1E40AF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 1023px) {
+  .navigation {
+    display: none;
+  }
+  
+  .actions {
+    gap: 16px;
+  }
+  
+  .email span {
+    display: none;
+  }
+  
+  .ctaButton {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    padding: 12px 0;
+  }
+  
+  .header.scrolled {
+    padding: 8px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .actions {
+    display: none;
+  }
+  
+  .burgerMenu {
+    display: flex;
+  }
+  
+  .mobileMenu {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+  
+  .logo svg {
+    width: 100px;
+    height: 26px;
+  }
+  
+  .mobileMenu {
+    padding: 20px;
+  }
+  
+  .mobileMenuHeader {
+    margin-bottom: 24px;
+  }
+  
+  .mobileNavLink {
+    font-size: 16px;
+    padding: 14px 0;
+  }
+  
+  .mobileEmail {
+    font-size: 14px;
+  }
+  
+  .mobileMessengerLink {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  
+  .mobileCtaButton {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+}

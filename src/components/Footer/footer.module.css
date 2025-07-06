@@ -1,0 +1,53 @@
+.footer {
+    background: #FFFFFF;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    padding: var(--spacing-lg) var(--spacing-lg);
+    color: #1F2937;
+    width: 100%;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg);
+  }
+  
+  /* Стили для списка социальных ссылок */
+  .socialList {
+    display: flex;
+    gap: var(--spacing-md);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .socialLink {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-normal);
+  }
+  
+  .socialLink:hover {
+    color: var(--dark-blue);
+  }
+  
+  /* Центрирование для мобильных устройств */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .socialList {
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+  }
+  

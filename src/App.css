@@ -1,0 +1,73 @@
+:root {
+  --primary-color: #6c2bd9;
+  --secondary-color: #ffffff;
+  --accent-color: #ece4fb;
+  --text-color: #1e1e1e;
+  --link-color: #6c2bd9;
+  --link-hover: #4a1da5;
+  --background-color: #f9f9fb;
+  --border-radius: 12px;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  font-family: 'Inter', sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  scroll-behavior: smooth;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5 {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--link-hover);
+}
+
+/* Buttons */
+button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background-color: var(--link-hover);
+}
+
+/* Utility */
+.text-center {
+  text-align: center;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
