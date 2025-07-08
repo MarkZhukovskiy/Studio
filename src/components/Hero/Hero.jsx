@@ -163,22 +163,34 @@ const Hero = ({
   const heroClassName = variant === 'gradient' ? `${styles.hero} ${styles.gradientHero}` : styles.hero;
 
   return (
-    <section className={heroClassName} ref={heroRef}>
+    <section className={styles.hero} ref={heroRef}>
+      {/* SVG-анимации на фоне */}
+      <svg className={styles.svgBgAnimated} style={{left: '5%', top: '10%', width: '100px', height: '100px'}} viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="40" fill="#3B82F6" opacity="0.08" />
+        <circle cx="50" cy="50" r="25" fill="#06B6D4" opacity="0.12" />
+      </svg>
+      <svg className={styles.svgBgAnimated2} viewBox="0 0 120 120" fill="none">
+        <rect x="20" y="20" width="80" height="80" rx="30" fill="#8B5CF6" opacity="0.07" />
+        <rect x="40" y="40" width="40" height="40" rx="20" fill="#2563EB" opacity="0.10" />
+      </svg>
+      <svg className={styles.svgBgAnimated3} viewBox="0 0 90 90" fill="none">
+        <ellipse cx="45" cy="45" rx="40" ry="20" fill="#10B981" opacity="0.08" />
+        <ellipse cx="45" cy="45" rx="20" ry="10" fill="#F59E0B" opacity="0.10" />
+      </svg>
+      <svg className={styles.svgBgAnimated4} viewBox="0 0 80 80" fill="none">
+        <polygon points="40,10 70,70 10,70" fill="#F59E0B" opacity="0.08" />
+        <polygon points="40,25 60,65 20,65" fill="#3B82F6" opacity="0.10" />
+      </svg>
+      <svg className={styles.svgBgAnimated5} viewBox="0 0 110 110" fill="none">
+        <rect x="20" y="20" width="70" height="70" rx="35" fill="#06B6D4" opacity="0.07" />
+        <circle cx="55" cy="55" r="30" fill="#8B5CF6" opacity="0.09" />
+      </svg>
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textContent}>
-            <h1 className={styles.title}>
-              {title}
-            </h1>
-            
-            <h2 className={styles.subtitle}>
-              {subtitle}
-            </h2>
-            
-            <p className={styles.description}>
-              {description}
-            </p>
-            
+            <h1 className={styles.title}>{title}</h1>
+            <h2 className={styles.subtitle}>{subtitle}</h2>
+            <p className={styles.description}>{description}</p>
             <div className={styles.buttons}>
               <button 
                 className={styles.primaryButton}
@@ -194,7 +206,6 @@ const Hero = ({
               </button>
             </div>
           </div>
-          
           <div 
             className={styles.illustration}
             onMouseMove={handleMouseMove}
@@ -205,11 +216,6 @@ const Hero = ({
             </div>
           </div>
         </div>
-      </div>
-      
-      <div className={styles.scrollIndicator} onClick={onScroll}>
-        <span>Прокрутите вниз</span>
-        <div className={styles.scrollArrow}>↓</div>
       </div>
     </section>
   );

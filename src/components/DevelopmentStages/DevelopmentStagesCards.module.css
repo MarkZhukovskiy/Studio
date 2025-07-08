@@ -1,0 +1,147 @@
+.stagesSection {
+  padding: 48px 0 0 0;
+}
+
+.stagesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.stageCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  opacity: 0;
+  transform: scale(0.96) translateY(30px);
+  animation: fadeInScale 0.7s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+.stageCard:hover {
+  background: #F9FAFB;
+  box-shadow: 0 4px 16px rgba(59,130,246,0.08);
+  transform: scale(1.03) translateY(-2px);
+}
+
+.iconWrap {
+  margin-bottom: 20px;
+  transition: transform 0.2s;
+}
+
+.stageCard:hover .iconWrap {
+  transform: scale(1.05);
+}
+
+.stageTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0 0 10px 0;
+}
+
+.stageDesc {
+  font-size: 1rem;
+  color: #374151;
+  margin: 0 0 24px 0;
+  flex: 1;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  margin-top: auto;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  display: none;
+}
+
+.customCheckbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #3B82F6;
+  border-radius: 6px;
+  background: #fff;
+  margin-right: 10px;
+  position: relative;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .customCheckbox {
+  background: #3B82F6;
+  border-color: #2563EB;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .customCheckbox::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkboxText {
+  font-size: 1rem;
+  color: #2563EB;
+  font-weight: 500;
+}
+
+.submitButton {
+  display: block;
+  margin: 32px auto 0 auto;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(59,130,246,0.10);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.submitButton:hover {
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .stagesGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stagesGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .stageCard {
+    padding: 20px 12px;
+  }
+} 

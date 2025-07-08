@@ -1,6 +1,7 @@
 {
   "short_name": "React App",
   "name": "Create React App Sample",
+  "description": "EAM Digital — разработка мобильных приложений и веб-сервисов под ключ. Дизайн, поддержка, продвижение.",
   "icons": [
     {
       "src": "favicon.ico",

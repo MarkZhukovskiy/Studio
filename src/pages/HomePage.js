@@ -5,7 +5,6 @@ import Hero from '../components/Hero/Hero.jsx';
 import ProjectsOverview from '../components/ProjectsOverview/ProjectsOverview.jsx';
 import DevelopmentStages from '../components/DevelopmentStages/DevelopmentStages.jsx';
 import PricingTimeline from '../components/PricingTimeline/PricingTimeline.jsx';
-import TestimonialsCarousel from '../components/TestimonialsCarousel/TestimonialsCarousel.jsx';
 import FAQBlock from '../components/FAQBlock/FAQBlock.jsx';
 import ConsultationBlock from '../components/ConsultationBlock/ConsultationBlock.jsx';
 import BriefModal from '../components/BriefModal/BriefModal.jsx';
@@ -31,17 +30,18 @@ function HomePage() {
   
   // Данные для Hero секции
   const heroData = {
-    title: "A&M Create",
+    title: "EAM Digital",
     subtitle: "Создаём мобильные решения, которые увеличивают прибыль",
-    description: "Подберем подходящее решение с учетом целей и возможностей вашего бизнеса",
+    description: "Подберем подходящее решение с учетом целей и возможностей вашего бизнеса. Разрабатываем приложения для iOS и Android с использованием современных технологий.",
     primaryAction: {
       label: 'Обсудить проект',
       onClick: handleOpenModal,
     },
     secondaryAction: {
-      label: 'Узнать больше',
-      onClick: () => console.log('Learn more clicked'),
-    }
+      label: 'Посмотреть портфолио',
+      onClick: () => console.log('Portfolio clicked'),
+    },
+    variant: 'gradient' // Используем градиентный вариант для более современного вида
   };
 
   // Данные для проектов
@@ -153,111 +153,56 @@ function HomePage() {
 
   // Данные для сроков и стоимости
   const pricingData = {
-    title: "Сколько стоит вывести ваше приложение на рынок?",
-    subtitle: "Каждый проект уникален, но мы заранее озвучиваем сроки и бюджет. Вы понимаете, сколько времени и ресурсов потребуется, чтобы запустить продукт.",
+    title: "Сколько стоит создать мобильное приложение?",
+    subtitle: "Прозрачное ценообразование и четкие сроки разработки. От идеи до публикации в App Store и Google Play.",
     timelineStages: [
       {
         id: 1,
-        stage: "Сбор информации и аналитика",
-        duration: "3–5 рабочих дней"
+        stage: "Анализ и исследование",
+        duration: "5–7 дней"
       },
       {
         id: 2,
-        stage: "Техническое задание",
-        duration: "5–10 рабочих дней"
+        stage: "UX/UI дизайн",
+        duration: "10–15 дней"
       },
       {
         id: 3,
-        stage: "Прототипирование",
-        duration: "7–14 рабочих дней"
+        stage: "Архитектура и планирование",
+        duration: "7–10 дней"
       },
       {
         id: 4,
-        stage: "UX/UI дизайн",
-        duration: "10–20 рабочих дней"
+        stage: "Разработка MVP",
+        duration: "25–35 дней"
       },
       {
         id: 5,
-        stage: "Разработка",
-        duration: "1–3 месяца"
+        stage: "Тестирование и оптимизация",
+        duration: "10–15 дней"
       },
       {
         id: 6,
-        stage: "Тестирование",
-        duration: "2–4 недели"
+        stage: "Публикация в сторах",
+        duration: "5–7 дней"
       },
       {
         id: 7,
-        stage: "Публикация и релиз",
-        duration: "3–5 рабочих дней"
+        stage: "Поддержка",
+        duration: "в течение месяца"
       }
     ],
-    pricingRange: "В среднем проекты стоят от 500 000 ₽ до 3 000 000 ₽.",
-    pricingNote: "Мы подберем решение под ваш бюджет и цели бизнеса.",
+    pricingRange: "от 500 000 ₽ до 3 000 000 ₽",
+    pricingNote: "Стоимость зависит от сложности функционала и платформ (iOS/Android).",
     includedFeatures: [
-      "Персональный менеджер",
-      "Проработка бизнес-логики",
-      "Уникальный UX/UI-дизайн",
-      "Адаптация под App Store и Google Play",
-      "Техническая поддержка после запуска"
-    ]
-  };
-
-  // Данные для отзывов
-  const testimonialsData = {
-    title: "Отзывы наших клиентов",
-    subtitle: "Реальные истории успеха от компаний, которые доверили нам разработку своих приложений",
-    testimonials: [
-      {
-        id: 1,
-        name: "Александр Петров",
-        position: "CEO, TechStart",
-        company: "Стартап в сфере финтеха",
-        avatar: "/images/testimonial-1.jpg",
-        text: "A&M Create разработали для нас мобильное приложение, которое превзошло все ожидания. Команда проявила профессионализм на каждом этапе разработки, от анализа требований до запуска в продакшн. Приложение получило высокие оценки пользователей и помогло нам привлечь инвестиции.",
-        rating: 5,
-        project: "Мобильное приложение для управления инвестициями"
-      },
-      {
-        id: 2,
-        name: "Мария Сидорова",
-        position: "Маркетинг-директор",
-        company: "FoodDelivery Pro",
-        avatar: "/images/testimonial-2.jpg",
-        text: "Работа с A&M Create была настоящим удовольствием. Они не только создали качественное приложение для доставки еды, но и помогли нам оптимизировать бизнес-процессы. Результат превзошел ожидания — рост заказов на 40% в первый месяц после запуска.",
-        rating: 5,
-        project: "Приложение для доставки еды"
-      },
-      {
-        id: 3,
-        name: "Дмитрий Козлов",
-        position: "Основатель",
-        company: "EduTech Solutions",
-        avatar: "/images/testimonial-3.jpg",
-        text: "A&M Create создали для нас образовательную платформу с нуля. Команда показала глубокое понимание наших потребностей и реализовала все функции точно в срок. Пользователи в восторге от удобства и функциональности приложения.",
-        rating: 5,
-        project: "Образовательная платформа"
-      },
-      {
-        id: 4,
-        name: "Елена Воробьева",
-        position: "Product Manager",
-        company: "HealthTech",
-        avatar: "/images/testimonial-4.jpg",
-        text: "Разработка медицинского приложения требует особого подхода и внимания к деталям. A&M Create справились с этой задачей блестяще. Приложение соответствует всем стандартам безопасности и получило одобрение медицинского сообщества.",
-        rating: 5,
-        project: "Медицинское приложение"
-      },
-      {
-        id: 5,
-        name: "Сергей Морозов",
-        position: "CTO",
-        company: "Retail Innovations",
-        avatar: "/images/testimonial-5.jpg",
-        text: "Сотрудничество с A&M Create помогло нам создать инновационное решение для ритейла. Команда проявила креативность в решении сложных технических задач и создала продукт, который выделяется на рынке.",
-        rating: 5,
-        project: "CRM система для ритейла"
-      }
+      "Анализ рынка и конкурентов",
+      "UX/UI дизайн для iOS и Android",
+      "Нативная разработка на Swift/Kotlin",
+      "Интеграция с API и сервисами",
+      "Публикация в App Store и Google Play",
+      "Техническая поддержка 6 месяцев",
+      "ASO оптимизация и продвижение",
+      "Аналитика и отчеты по метрикам"
     ]
   };
 
@@ -319,24 +264,21 @@ function HomePage() {
   return (
     <div className="App">
       <Header onOpenModal={handleOpenModal} />
-      <main>
-        <Hero 
-          title={heroData.title}
-          subtitle={heroData.subtitle}
-          description={heroData.description}
-          primaryAction={heroData.primaryAction}
-          secondaryAction={heroData.secondaryAction}
-          onScroll={() => console.log('Scroll indicator clicked')}
-        />
-        <ProjectsOverview data={projectsData} onOpenModal={handleOpenModal} />
-        <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
-        <PricingTimeline data={pricingData} onOpenModal={handleOpenModal} />
-        <TestimonialsCarousel data={testimonialsData} />
-        <FAQBlock data={faqData} />
-        <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
-      </main>
+      <Hero 
+        title={heroData.title}
+        subtitle={heroData.subtitle}
+        description={heroData.description}
+        primaryAction={heroData.primaryAction}
+        secondaryAction={heroData.secondaryAction}
+        variant={heroData.variant}
+        onScroll={() => console.log('Scroll indicator clicked')}
+      />
+      <ProjectsOverview data={projectsData} onOpenModal={handleOpenModal} />
+      <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
+      <PricingTimeline data={pricingData} onOpenModal={handleOpenModal} />
+      <FAQBlock data={faqData} />
+      <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
       <Footer socialLinks={footerData.socialLinks} />
-      
       <BriefModal 
         isOpen={isModalOpen}
         onClose={handleCloseModal}

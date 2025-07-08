@@ -3,6 +3,8 @@ import Header from '../components/Header/header.jsx';
 import Footer from '../components/Footer/footer.jsx';
 import BriefModal from '../components/BriefModal/BriefModal.jsx';
 import ServicesHero from '../components/ServicesHero/ServicesHero.jsx';
+import DevelopmentStagesCards from '../components/DevelopmentStages/DevelopmentStagesCards.jsx';
+import ProjectPricingBlock from '../components/ProjectPricingBlock/ProjectPricingBlock.jsx';
 import styles from './ServicesPage.module.css';
 
 function ServicesPage() {
@@ -96,10 +98,12 @@ function ServicesPage() {
   return (
     <div className={styles.servicesPage}>
       <Header onOpenModal={handleOpenModal} />
-      
       {/* Hero секция */}
       <ServicesHero />
-
+      {/* Этапы разработки */}
+      <DevelopmentStagesCards />
+      {/* Сроки и стоимость */}
+      <ProjectPricingBlock />
       {/* Секция с услугами */}
       <section className={styles.servicesSection}>
         <div className={styles.container}>
@@ -113,11 +117,9 @@ function ServicesPage() {
                 <div className={styles.serviceIcon}>
                   {service.icon}
                 </div>
-                
                 <div className={styles.serviceContent}>
                   <h3 className={styles.serviceTitle}>{service.title}</h3>
                   <p className={styles.serviceDescription}>{service.description}</p>
-                  
                   <div className={styles.serviceFeatures}>
                     {service.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className={styles.featureItem}>
@@ -129,7 +131,6 @@ function ServicesPage() {
                       </div>
                     ))}
                   </div>
-                  
                   <button 
                     className={styles.serviceButton}
                     onClick={() => handleServiceClick(service.id)}
@@ -146,7 +147,6 @@ function ServicesPage() {
           </div>
         </div>
       </section>
-
       {/* CTA секция */}
       <section className={styles.ctaSection}>
         <div className={styles.container}>
@@ -165,13 +165,11 @@ function ServicesPage() {
           </div>
         </div>
       </section>
-
       <Footer socialLinks={[
         { name: 'Telegram', url: 'https://t.me/...' },
         { name: 'Instagram', url: 'https://instagram.com/...' },
         { name: 'LinkedIn', url: 'https://linkedin.com/...' }
       ]} />
-      
       <BriefModal 
         isOpen={isModalOpen}
         onClose={handleCloseModal}

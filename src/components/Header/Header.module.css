@@ -1,35 +1,27 @@
 .header {
   position: fixed;
-  top: 20px;
-  left: 40px;
-  right: 40px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  background: transparent;
-  transition: all 0.4s ease;
+  background: #FFFFFF;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: background 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1);
   padding: 16px 0;
-  border-radius: 16px;
+  border-radius: 0 0 16px 16px;
 }
 
 .header.scrolled {
-  background: #FFFFFF;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 12px 0;
-}
-
-.header.white {
-  background: #FFFFFF;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.header.blue {
-  background: #2563EB;
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.10), 0 1.5px 8px rgba(0,0,0,0.08);
+  padding: 10px 0;
+  border-radius: 0 0 24px 24px;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--spacing-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -78,10 +70,6 @@
   padding: 8px 0;
 }
 
-.header.blue .navLink {
-  color: #FFFFFF;
-}
-
 .navLink:hover {
   color: #3B82F6;
 }
@@ -110,6 +98,13 @@
   background: #2563EB;
 }
 
+.navLink:focus, .navLink:active {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+  background: rgba(37,99,235,0.07);
+  border-radius: 6px;
+}
+
 /* Контакты и CTA */
 .actions {
   display: flex;
@@ -129,16 +124,19 @@
   transition: color 0.4s ease;
 }
 
-.header.blue .email {
-  color: #FFFFFF;
-}
-
 .email:hover {
   color: #3B82F6;
 }
 
 .email svg {
   flex-shrink: 0;
+}
+
+.email:focus, .email:active {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+  background: rgba(59,130,246,0.07);
+  border-radius: 6px;
 }
 
 /* Мессенджеры */
@@ -159,14 +157,16 @@
   border-radius: 6px;
 }
 
-.header.blue .messengerLink {
-  color: #FFFFFF;
-}
-
 .messengerLink:hover {
   color: #06B6D4;
   background: rgba(6, 182, 212, 0.1);
   transform: translateY(-1px);
+}
+
+.messengerLink:focus, .messengerLink:active {
+  outline: 2px solid #06B6D4;
+  outline-offset: 2px;
+  background: rgba(6,182,212,0.08);
 }
 
 /* CTA кнопка */
@@ -193,6 +193,11 @@
   transform: translateY(0);
 }
 
+.ctaButton:focus, .ctaButton:active {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+}
+
 /* Бургер меню */
 .burgerMenu {
   display: none;
@@ -214,10 +219,6 @@
   transform-origin: center;
 }
 
-.header.blue .burgerLine {
-  background: #FFFFFF;
-}
-
 .burgerLine.active:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
 }
@@ -230,6 +231,12 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
+.burgerMenu:focus, .burgerMenu:active {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+  background: #E0E7FF;
+}
+
 /* Мобильное меню */
 .mobileOverlay {
   position: fixed;
@@ -239,7 +246,7 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
 .mobileMenu {
@@ -253,7 +260,8 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
-  animation: slideIn 0.3s ease;
+  animation: slideIn 0.4s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform, opacity;
   overflow-y: auto;
 }
 
@@ -278,6 +286,12 @@
 
 .closeButton:hover {
   background: #F3F4F6;
+}
+
+.closeButton:focus, .closeButton:active {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+  background: #E0E7FF;
 }
 
 /* Мобильная навигация */
@@ -311,6 +325,13 @@
   color: #3B82F6;
 }
 
+.mobileNavLink:focus, .mobileNavLink:active {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
+  background: rgba(37,99,235,0.07);
+  border-radius: 6px;
+}
+
 /* Мобильные контакты */
 .mobileContacts {
   margin-bottom: 32px;
@@ -330,6 +351,13 @@
 
 .mobileEmail:hover {
   color: #3B82F6;
+}
+
+.mobileEmail:focus, .mobileEmail:active {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+  background: rgba(59,130,246,0.07);
+  border-radius: 6px;
 }
 
 .mobileMessengers {
@@ -355,6 +383,12 @@
   background: rgba(6, 182, 212, 0.1);
 }
 
+.mobileMessengerLink:focus, .mobileMessengerLink:active {
+  outline: 2px solid #06B6D4;
+  outline-offset: 2px;
+  background: rgba(6,182,212,0.08);
+}
+
 /* Мобильная CTA кнопка */
 .mobileCtaButton {
   background: #2563EB;
@@ -373,6 +407,15 @@
   background: #1E40AF;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.mobileCtaButton:active {
+  transform: translateY(0);
+}
+
+.mobileCtaButton:focus, .mobileCtaButton:active {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
 }
 
 /* Анимации */
