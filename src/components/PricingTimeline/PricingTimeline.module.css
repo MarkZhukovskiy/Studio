@@ -60,7 +60,6 @@
 }
 
 /* Секции */
-.timelineSection,
 .pricingSection,
 .featuresSection {
   opacity: 1;
@@ -89,116 +88,7 @@
   line-height: var(--line-height-relaxed);
 }
 
-/* Таймлайн */
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-}
 
-
-
-.timelineItem {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-2xl);
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.6s ease-out;
-  cursor: pointer;
-  padding: var(--spacing-md);
-  border-radius: var(--radius-lg);
-  background: transparent;
-  z-index: 2;
-}
-
-.timelineItem.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.timelineItem:hover {
-  transform: translateX(8px) translateY(-2px);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
-}
-
-
-
-.timelineItem:hover .timelineDot {
-  transform: scale(1.1);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
-  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
-}
-
-.timelineDot {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: var(--spacing-xl);
-  flex-shrink: 0;
-  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
-  transition: all 0.3s ease-out;
-}
-
-.timelineItem:hover .timelineDot {
-  transform: scale(1.1);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
-  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
-}
-
-.timelineIcon {
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.timelineContent {
-  flex: 1;
-  padding-top: var(--spacing-sm);
-}
-
-.timelineHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-sm);
-}
-
-.timelineTitle {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
-  margin: 0;
-  transition: color 0.3s ease-out;
-}
-
-.timelineItem:hover .timelineTitle {
-  color: var(--primary-blue);
-}
-
-.timelineDuration {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--primary-blue);
-  background: rgba(59, 130, 246, 0.1);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  white-space: nowrap;
-  transition: all 0.3s ease-out;
-}
-
-.timelineItem:hover .timelineDuration {
-  background: rgba(59, 130, 246, 0.2);
-  transform: scale(1.05);
-}
 
 /* Таблица цен */
 .pricingTable {
@@ -425,17 +315,7 @@
     font-size: var(--font-size-2xl);
   }
 
-  .timelineDot {
-    width: 50px;
-    height: 50px;
-    margin-right: var(--spacing-lg);
-  }
 
-  .timelineHeader {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-  }
 
   .pricingRow {
     grid-template-columns: 1fr;
@@ -455,15 +335,6 @@
 }
 
 @media (max-width: 480px) {
-  .timelineDot {
-    width: 40px;
-    height: 40px;
-    margin-right: var(--spacing-md);
-  }
-
-  .timelineTitle {
-    font-size: var(--font-size-base);
-  }
 
   .pricingValue {
     font-size: var(--font-size-2xl);

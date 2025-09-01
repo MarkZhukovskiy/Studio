@@ -2,6 +2,8 @@ import { useState } from 'react';
 import '../App.css';
 import Header from '../components/Header/header.jsx';
 import Hero from '../components/Hero/Hero.jsx';
+import QuizBlock from '../components/QuizBlock/QuizBlock.jsx';
+import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs.jsx';
 import ProjectsOverview from '../components/ProjectsOverview/ProjectsOverview.jsx';
 import DevelopmentStages from '../components/DevelopmentStages/DevelopmentStages.jsx';
 import PricingTimeline from '../components/PricingTimeline/PricingTimeline.jsx';
@@ -24,6 +26,12 @@ function HomePage() {
   const handleSubmitBrief = (formData) => {
     console.log('Brief submitted:', formData);
     // Здесь будет логика отправки данных на сервер
+  };
+
+  const handleQuizSubmit = (quizData) => {
+    console.log('Quiz submitted:', quizData);
+    // Здесь будет логика отправки данных квиза
+    // Можно интегрировать с CRM или отправлять на email
   };
 
   // ===== ВСЕ ДАННЫЕ САЙТА В ОДНОМ МЕСТЕ =====
@@ -245,6 +253,15 @@ function HomePage() {
     keywords: ["мобильное приложение vs сайт", "заказать приложение", "стоимость разработки приложения"]
   };
 
+  // Данные для блока "Почему выбирают нас"
+  const whyChooseUsData = {
+    title: "Почему выбирают нас",
+    ctaButton: {
+      label: "Связаться с нами",
+      onClick: handleOpenModal
+    }
+  };
+
   // Данные для консультации
   const consultationData = {
     title: "Запросите консультацию!",
@@ -272,6 +289,11 @@ function HomePage() {
         secondaryAction={heroData.secondaryAction}
         variant={heroData.variant}
         onScroll={() => console.log('Scroll indicator clicked')}
+      />
+      <QuizBlock onSubmit={handleQuizSubmit} />
+      <WhyChooseUs 
+        title={whyChooseUsData.title}
+        ctaButton={whyChooseUsData.ctaButton}
       />
       <ProjectsOverview data={projectsData} onOpenModal={handleOpenModal} />
       <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />

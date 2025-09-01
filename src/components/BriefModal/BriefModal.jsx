@@ -5,6 +5,7 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
   const [formData, setFormData] = useState({
     name: '',
     contact: '',
+    contactMethod: 'phone',
     appType: '',
     budget: '',
     deadline: '',
@@ -60,37 +61,27 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
 
   const validateForm = () => {
     const newErrors = {};
-
-    // Валидация имени
     if (!formData.name.trim()) {
       newErrors.name = 'Имя обязательно для заполнения';
     } else if (formData.name.trim().length < 2) {
       newErrors.name = 'Имя должно содержать минимум 2 символа';
     }
-
-    // Валидация контактов
     if (!formData.contact.trim()) {
-      newErrors.contact = 'Email или телефон обязательны для заполнения';
+      newErrors.contact = formData.contactMethod === 'email' ? 'Email обязателен' : 'Телефон обязателен';
     } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
-      const cleanPhone = formData.contact.replace(/[\s\-()]/g, '');
-      
-      if (!emailRegex.test(formData.contact) && !phoneRegex.test(cleanPhone)) {
-        newErrors.contact = 'Введите корректный email или номер телефона';
+      if (formData.contactMethod === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.contact)) {
+          newErrors.contact = 'Введите корректный email';
+        }
+      } else {
+        const phoneRegex = /^[+]?[1-9][\d]{0,15}$/;
+        const cleanPhone = formData.contact.replace(/[\s\-()]/g, '');
+        if (!phoneRegex.test(cleanPhone)) {
+          newErrors.contact = 'Введите корректный номер телефона';
+        }
       }
     }
-
-    // Валидация типа приложения
-    if (!formData.appType) {
-      newErrors.appType = 'Выберите тип приложения';
-    }
-
-    // Валидация бюджета
-    if (!formData.budget) {
-      newErrors.budget = 'Выберите ориентировочный бюджет';
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -101,13 +92,15 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
       ...prev,
       [name]: value
     }));
-
-    // Очищаем ошибку при вводе
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
         [name]: ''
       }));
+    }
+    // Сбросить контакт при смене способа связи
+    if (name === 'contactMethod') {
+      setFormData(prev => ({ ...prev, contact: '' }));
     }
   };
 
@@ -139,6 +132,7 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
         setFormData({
           name: '',
           contact: '',
+          contactMethod: 'phone',
           appType: '',
           budget: '',
           deadline: '',
@@ -208,63 +202,72 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
                 />
                 {errors.name && <span className={styles.errorText}>{errors.name}</span>}
               </div>
-
+              <div className={styles.formGroup}>
+                <label htmlFor="contactMethod" className={styles.label}>
+                  Как хотите связаться?
+                </label>
+                <select
+                  id="contactMethod"
+                  name="contactMethod"
+                  value={formData.contactMethod}
+                  onChange={handleInputChange}
+                  className={styles.select}
+                >
+                  <option value="phone">Телефон</option>
+                  <option value="email">Email</option>
+                </select>
+              </div>
               <div className={styles.formGroup}>
                 <label htmlFor="contact" className={styles.label}>
-                  Email или телефон <span className={styles.required}>*</span>
+                  {formData.contactMethod === 'email' ? 'Email' : 'Телефон'} <span className={styles.required}>*</span>
                 </label>
                 <input
-                  type="text"
+                  type={formData.contactMethod === 'email' ? 'email' : 'text'}
                   id="contact"
                   name="contact"
                   value={formData.contact}
                   onChange={handleInputChange}
                   className={`${styles.input} ${errors.contact ? styles.inputError : ''}`}
-                  placeholder="example@email.com или +7 (999) 123-45-67"
+                  placeholder={formData.contactMethod === 'email' ? 'example@email.com' : '+7 (999) 123-45-67'}
                 />
                 {errors.contact && <span className={styles.errorText}>{errors.contact}</span>}
               </div>
-
               <div className={styles.formGroup}>
                 <label htmlFor="appType" className={styles.label}>
-                  Тип приложения <span className={styles.required}>*</span>
+                  Тип проекта
                 </label>
                 <select
                   id="appType"
                   name="appType"
                   value={formData.appType}
                   onChange={handleInputChange}
-                  className={`${styles.select} ${errors.appType ? styles.inputError : ''}`}
+                  className={styles.select}
                 >
-                  <option value="">Выберите тип приложения</option>
+                  <option value="">Выберите тип проекта (необязательно)</option>
                   <option value="ios">iOS</option>
                   <option value="android">Android</option>
                   <option value="cross-platform">Кроссплатформенное</option>
                   <option value="undecided">Не определился</option>
                 </select>
-                {errors.appType && <span className={styles.errorText}>{errors.appType}</span>}
               </div>
-
               <div className={styles.formGroup}>
                 <label htmlFor="budget" className={styles.label}>
-                  Ориентировочный бюджет <span className={styles.required}>*</span>
+                  Ориентировочный бюджет
                 </label>
                 <select
                   id="budget"
                   name="budget"
                   value={formData.budget}
                   onChange={handleInputChange}
-                  className={`${styles.select} ${errors.budget ? styles.inputError : ''}`}
+                  className={styles.select}
                 >
-                  <option value="">Выберите бюджет</option>
+                  <option value="">Выберите бюджет (необязательно)</option>
                   <option value="under-500k">до 500 000 ₽</option>
                   <option value="500k-1m">500 000 – 1 000 000 ₽</option>
                   <option value="1m-3m">1 000 000 – 3 000 000 ₽</option>
                   <option value="over-3m">более 3 000 000 ₽</option>
                 </select>
-                {errors.budget && <span className={styles.errorText}>{errors.budget}</span>}
               </div>
-
               <div className={styles.formGroup}>
                 <label htmlFor="deadline" className={styles.label}>
                   Желаемые сроки запуска
@@ -279,7 +282,6 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
                   min={new Date().toISOString().split('T')[0]}
                 />
               </div>
-
               <div className={styles.formGroup}>
                 <label htmlFor="description" className={styles.label}>
                   Комментарий / описание проекта
@@ -294,7 +296,9 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
                   rows="4"
                 />
               </div>
-
+              <div className={styles.formNote} style={{marginBottom: 16, color: '#888', fontSize: '14px'}}>
+                Вы можете оставить только имя и контакт, остальное обсудим при созвоне.
+              </div>
               <button
                 type="submit"
                 className={styles.submitButton}
@@ -310,7 +314,6 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
                   'Отправить бриф'
                 )}
               </button>
-
               {submitStatus === 'error' && (
                 <div className={styles.errorMessage}>
                   Произошла ошибка при отправке. Попробуйте еще раз.

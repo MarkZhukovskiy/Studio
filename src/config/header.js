@@ -13,9 +13,9 @@ const whatsappIcon = (
 const headerConfig = {
   navigationItems: [
     { id: 'services', label: 'Услуги', href: '/services' },
-    { id: 'portfolio', label: 'Портфолио', href: '#portfolio' },
+    { id: 'portfolio', label: 'Портфолио', href: '/portfolio' },
     { id: 'blog', label: 'Статьи', href: '#blog' },
-    { id: 'about', label: 'О нас', href: '#about' }
+    { id: 'about', label: 'О нас', href: '/about' }
   ],
   email: 'hello@company.ru',
   messengers: [

@@ -31,8 +31,16 @@
 .logo {
   flex-shrink: 0;
   transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
-
+.logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 .header.scrolled .logo {
   transform: scale(0.9);
 }
@@ -480,6 +488,12 @@
   
   .mobileMenu {
     width: 100%;
+  }
+  .logo {
+    height: 32px;
+  }
+  .logo img {
+    height: 32px;
   }
 }
 
