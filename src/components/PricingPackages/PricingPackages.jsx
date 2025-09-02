@@ -1,0 +1,112 @@
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './PricingPackages.module.css';
+
+const PricingPackages = ({ data, onOpenModal }) => {
+  const [visibleCards, setVisibleCards] = useState(new Set());
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    const observers = [];
+
+    cardRefs.current.forEach((cardRef, index) => {
+      if (cardRef) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setVisibleCards(prev => new Set([...prev, index]));
+              }
+            });
+          },
+          {
+            threshold: 0.3, // Анимация запускается когда 30% карточки видно
+            rootMargin: '0px 0px -50px 0px' // Небольшой отступ снизу
+          }
+        );
+
+        observer.observe(cardRef);
+        observers.push(observer);
+      }
+    });
+
+    return () => {
+      observers.forEach(observer => observer.disconnect());
+    };
+  }, []);
+
+  return (
+    <section className={styles.pricingPackages}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h2 className={styles.title}>{data.title}</h2>
+          <p className={styles.subtitle}>{data.subtitle}</p>
+        </div>
+        
+        <div className={styles.packagesGrid}>
+          {data.packages.map((pkg, index) => (
+            <div 
+              key={pkg.id} 
+              className={`${styles.packageCard} ${visibleCards.has(index) ? styles.visible : ''}`}
+              ref={el => cardRefs.current[index] = el}
+            >
+              <div className={styles.packageHeader}>
+                <h3 className={styles.packageTitle}>{pkg.name}</h3>
+                <p className={styles.packageDescription}>{pkg.description}</p>
+              </div>
+              
+              <div className={styles.packagePrice}>
+                <span className={styles.priceRange}>{pkg.priceRange}</span>
+                {pkg.duration && (
+                  <span className={styles.duration}>{pkg.duration}</span>
+                )}
+              </div>
+              
+              <div className={styles.packageFeatures}>
+                <h4 className={styles.featuresTitle}>Что включено:</h4>
+                <ul className={styles.featuresList}>
+                  {pkg.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className={styles.featureItem}>
+                      <svg 
+                        className={styles.checkIcon} 
+                        width="16" 
+                        height="16" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path 
+                          d="M20 6L9 17L4 12" 
+                          stroke="currentColor" 
+                          strokeWidth="2" 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <button 
+                className={styles.ctaButton}
+                onClick={onOpenModal}
+              >
+                {pkg.ctaText}
+              </button>
+            </div>
+          ))}
+        </div>
+        
+        <div className={styles.note}>
+          <p>
+            <strong>Важно:</strong> Точная стоимость рассчитывается индивидуально 
+            на основе детального технического задания и объёма работ.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default PricingPackages;

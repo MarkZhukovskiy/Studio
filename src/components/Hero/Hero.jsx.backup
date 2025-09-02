@@ -160,6 +160,7 @@ const Hero = ({
     }
   };
 
+  const heroClassName = variant === 'gradient' ? `${styles.hero} ${styles.gradientHero}` : styles.hero;
 
   return (
     <section className={styles.hero} ref={heroRef}>
@@ -203,29 +204,10 @@ const Hero = ({
                   </div>
                 ))}
               </div>
-            )}
-            <div className={styles.buttons}>
+            )}            <div className={styles.buttons}>
               <button
                 className={styles.primaryButton}
                 onClick={primaryAction.onClick}
               >
                 {primaryAction.label}
               </button>
-            </div>
-          </div>
-          <div className={styles.visualContent}>
-            <div 
-              className={styles.phoneContainer}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-            >
-              {renderSVG()}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Hero;

@@ -6,7 +6,7 @@ import QuizBlock from '../components/QuizBlock/QuizBlock.jsx';
 import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs.jsx';
 import ProjectsOverview from '../components/ProjectsOverview/ProjectsOverview.jsx';
 import DevelopmentStages from '../components/DevelopmentStages/DevelopmentStages.jsx';
-import PricingPackages from '../components/PricingPackages/PricingPackages.jsx';
+import PricingTimeline from '../components/PricingTimeline/PricingTimeline.jsx';
 import FAQBlock from '../components/FAQBlock/FAQBlock.jsx';
 import ConsultationBlock from '../components/ConsultationBlock/ConsultationBlock.jsx';
 import BriefModal from '../components/BriefModal/BriefModal.jsx';
@@ -161,74 +161,58 @@ function HomePage() {
     ]
   };
 
-  // Данные для тарифных пакетов
-  const pricingPackagesData = {
-    title: "Тарифные пакеты",
-    subtitle: "Выберите подходящий формат сотрудничества для вашего проекта",
-    packages: [
+  // Данные для сроков и стоимости
+  const pricingData = {
+    title: "Сколько стоит создать мобильное приложение?",
+    subtitle: "Прозрачное ценообразование и четкие сроки разработки. От идеи до публикации в App Store и Google Play.",
+    timelineStages: [
       {
         id: 1,
-        name: "MVP",
-        description: "Проверка гипотезы и запуск в сторы",
-        priceRange: "500 000 – 800 000 ₽",
-        duration: "Сроки от 5 недель",
-        features: [
-          "Базовый функционал приложения",
-          "UX/UI дизайн для iOS и Android",
-          "Публикация в App Store и Google Play",
-          "Техническая поддержка 3 месяца",
-          "Аналитика и базовые метрики"
-        ],
-        ctaText: "Обсудить MVP"
+        stage: "Анализ и исследование",
+        duration: "5–7 дней"
       },
       {
         id: 2,
-        name: "Business",
-        description: "Интеграции (CRM, API), расширенный функционал",
-        priceRange: "800 000 – 1 500 000 ₽",
-        duration: "Сроки от 8 недель",
-        features: [
-          "Расширенный функционал и интеграции",
-          "UX/UI дизайн под задачи бизнеса",
-          "Интеграция с CRM и внешними API",
-          "Продвинутая аналитика и отчеты",
-          "Техническая поддержка 6 месяцев",
-          "ASO оптимизация"
-        ],
-        ctaText: "Обсудить проект"
+        stage: "UX/UI дизайн",
+        duration: "10–15 дней"
       },
       {
         id: 3,
-        name: "Enterprise",
-        description: "Сложные проекты с AI, BI, ML",
-        priceRange: "от 1 500 000 ₽",
-        duration: "Сроки от 12 недель",
-        features: [
-          "Сложные проекты с AI, BI, ML",
-          "Индивидуальная команда под проект",
-          "Масштабируемая архитектура",
-          "Интеграция с корпоративными системами",
-          "Техническая поддержка 12 месяцев",
-          "Персональный менеджер проекта"
-        ],
-        ctaText: "Обсудить Enterprise"
+        stage: "Архитектура и планирование",
+        duration: "7–10 дней"
       },
       {
         id: 4,
-        name: "Поддержка",
-        description: "SLA, обновления, развитие продукта",
-        priceRange: "от 50 000 ₽/мес",
-        duration: "Ежемесячная подписка",
-        features: [
-          "SLA гарантии и мониторинг",
-          "Регулярные обновления и фичи",
-          "Развитие продукта по метрикам",
-          "Техническая поддержка 24/7",
-          "Аналитика и оптимизация",
-          "Гибкие условия сотрудничества"
-        ],
-        ctaText: "Обсудить поддержку"
+        stage: "Разработка MVP",
+        duration: "25–35 дней"
+      },
+      {
+        id: 5,
+        stage: "Тестирование и оптимизация",
+        duration: "10–15 дней"
+      },
+      {
+        id: 6,
+        stage: "Публикация в сторах",
+        duration: "5–7 дней"
+      },
+      {
+        id: 7,
+        stage: "Поддержка",
+        duration: "в течение месяца"
       }
+    ],
+    pricingRange: "от 500 000 ₽ до 3 000 000 ₽",
+    pricingNote: "Стоимость зависит от сложности функционала и платформ (iOS/Android).",
+    includedFeatures: [
+      "Анализ рынка и конкурентов",
+      "UX/UI дизайн для iOS и Android",
+      "Нативная разработка на Swift/Kotlin",
+      "Интеграция с API и сервисами",
+      "Публикация в App Store и Google Play",
+      "Техническая поддержка 6 месяцев",
+      "ASO оптимизация и продвижение",
+      "Аналитика и отчеты по метрикам"
     ]
   };
 
@@ -303,8 +287,7 @@ function HomePage() {
         title={heroData.title}
         subtitle={heroData.subtitle}
         description={heroData.description}
-        utp={heroData.utp}
-        primaryAction={heroData.primaryAction}
+        utp={heroData.utp}        primaryAction={heroData.primaryAction}
         variant={heroData.variant}
         onScroll={() => console.log('Scroll indicator clicked')}
       />
@@ -313,9 +296,9 @@ function HomePage() {
         title={whyChooseUsData.title}
         ctaButton={whyChooseUsData.ctaButton}
       />
-      <PricingPackages data={pricingPackagesData} onOpenModal={handleOpenModal} />
       <ProjectsOverview data={projectsData} onOpenModal={handleOpenModal} />
       <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
+      <PricingTimeline data={pricingData} onOpenModal={handleOpenModal} />
       <FAQBlock data={faqData} />
       <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
       <Footer socialLinks={footerData.socialLinks} />
@@ -328,4 +311,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default HomePage; 

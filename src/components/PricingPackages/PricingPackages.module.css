@@ -1,0 +1,247 @@
+.pricingPackages {
+  padding: 80px 0;
+  background: var(--background-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.packagesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.packageCard {
+  background: var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(108, 43, 217, 0.1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.packageCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.packageCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), #8B5CF6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0.3s;
+}
+
+.packageCard.visible::before {
+  transform: scaleX(1);
+}
+
+.packageCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(108, 43, 217, 0.15);
+}
+
+.packageCard.visible:hover {
+  transform: translateY(-8px);
+}
+
+.packageHeader {
+  margin-bottom: 1.5rem;
+}
+
+.packageTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.packageDescription {
+  color: var(--text-color);
+  opacity: 0.8;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.packagePrice {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--accent-color);
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.priceRange {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.duration {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.packageFeatures {
+  margin-bottom: 2rem;
+}
+
+.featuresTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  margin-right: 0.75rem;
+  margin-top: 0.1rem;
+  color: #10B981;
+}
+
+.ctaButton {
+  width: 100%;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: none;
+}
+
+.ctaButton:hover {
+  background: var(--link-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(108, 43, 217, 0.3);
+}
+
+.note {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--accent-color);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+}
+
+.note p {
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.note strong {
+  color: var(--primary-color);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .pricingPackages {
+    padding: 60px 0;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .packagesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .packageCard {
+    padding: 1.5rem;
+  }
+  
+  .packageTitle {
+    font-size: 1.3rem;
+  }
+  
+  .priceRange {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricingPackages {
+    padding: 40px 0;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .packageCard {
+    padding: 1.25rem;
+  }
+  
+  .packagePrice {
+    padding: 0.75rem;
+  }
+}
