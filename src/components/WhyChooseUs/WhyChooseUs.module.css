@@ -14,7 +14,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+  background: radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
               radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
@@ -32,7 +32,7 @@
   font-weight: var(--font-weight-bold);
   text-align: center;
   margin-bottom: var(--spacing-3xl);
-  color: #8B5CF6;
+  color: var(--text-color);
   position: relative;
 }
 
@@ -44,7 +44,7 @@
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #8B5CF6, #06B6D4);
+  background: linear-gradient(90deg, var(--primary-color), #1D4ED8);
   border-radius: 2px;
 }
 
@@ -76,7 +76,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #8B5CF6, #06B6D4);
+  background: linear-gradient(90deg, var(--primary-color), #1D4ED8);
   transform: scaleX(0);
   transition: transform var(--transition-normal);
 }
@@ -84,7 +84,7 @@
 .advantageCard:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-xl);
-  border-color: #06B6D4;
+  border-color: #1D4ED8;
 }
 
 .advantageCard:hover::before {
@@ -93,7 +93,7 @@
 
 .advantageCard:hover .iconWrapper {
   transform: scale(1.1);
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(6, 182, 212, 0.08));
 }
 
 .iconWrapper {
@@ -139,7 +139,7 @@
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, #8B5CF6, #06B6D4);
+  background: linear-gradient(135deg, var(--primary-color), #1D4ED8);
   color: var(--background-primary);
   border: none;
   padding: var(--spacing-lg) var(--spacing-2xl);
@@ -257,4 +257,4 @@
     width: 56px;
     height: 56px;
   }
-} 
+}

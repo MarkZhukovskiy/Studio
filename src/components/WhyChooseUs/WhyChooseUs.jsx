@@ -85,10 +85,10 @@ function WhyChooseUs({
     {
       icon: (
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="8" width="32" height="32" rx="8" fill="#8B5CF6" opacity="0.1"/>
-          <circle cx="24" cy="20" r="6" fill="#8B5CF6"/>
-          <path d="M16 32C16 28.6863 19.5817 26 24 26C28.4183 26 32 28.6863 32 32" stroke="#8B5CF6" strokeWidth="2" fill="none"/>
-          <path d="M18 14L22 18L26 14" stroke="#8B5CF6" strokeWidth="2" fill="none"/>
+          <rect x="8" y="8" width="32" height="32" rx="8" fill="#2563EB" opacity="0.1"/>
+          <circle cx="24" cy="20" r="6" fill="#2563EB"/>
+          <path d="M16 32C16 28.6863 19.5817 26 24 26C28.4183 26 32 28.6863 32 32" stroke="#2563EB" strokeWidth="2" fill="none"/>
+          <path d="M18 14L22 18L26 14" stroke="#2563EB" strokeWidth="2" fill="none"/>
         </svg>
       ),
       title: "Индивидуальный подход к каждому клиенту",
@@ -110,8 +110,6 @@ function WhyChooseUs({
 
   const advantagesToShow = advantages.length > 0 ? advantages : defaultAdvantages;
 
-  // Отладочная информация
-  console.log('WhyChooseUs render:', { title, advantagesToShow, ctaButton });
 
   return (
     <section ref={sectionRef} className={styles.section}>
@@ -164,4 +162,4 @@ WhyChooseUs.propTypes = {
   }),
 };
 
-export default React.memo(WhyChooseUs); 
+export default React.memo(WhyChooseUs);

@@ -1,11 +1,12 @@
+/* App.css */
 :root {
-  --primary-color: #6c2bd9;
+  --primary-color: #2563EB; /* primary blue */
   --secondary-color: #ffffff;
-  --accent-color: #ece4fb;
-  --text-color: #1e1e1e;
-  --link-color: #6c2bd9;
-  --link-hover: #4a1da5;
-  --background-color: #f9f9fb;
+  --accent-color: #E8F0FE; /* light blue background */
+  --text-color: #111827; /* dark gray */
+  --link-color: #2563EB;
+  --link-hover: #1D4ED8; /* darker blue */
+  --background-color: #F9FAFB; /* light gray */
   --border-radius: 12px;
 }
 
@@ -32,7 +33,7 @@ body, html {
 
 /* Typography */
 h1, h2, h3, h4, h5 {
-  color: var(--primary-color);
+  color: var(--text-color);
   font-weight: 600;
 }
 

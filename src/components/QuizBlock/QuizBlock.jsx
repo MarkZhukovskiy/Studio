@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './QuizBlock.module.css';
 
 // Конфигурация квиза
@@ -46,7 +46,7 @@ const quizConfig = {
   ]
 };
 
-const QuizBlock = ({ onSubmit }) => {
+const QuizBlock = ({ onSubmit, onOpenThankYou }) => {
   const [isStarted, setIsStarted] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState({});
@@ -124,8 +124,6 @@ const QuizBlock = ({ onSubmit }) => {
         timestamp: new Date().toISOString()
       };
       
-      console.log('Quiz submitted:', submissionData);
-      
       // Отправляем данные (заглушка)
       if (onSubmit) {
         await onSubmit(submissionData);
@@ -136,8 +134,17 @@ const QuizBlock = ({ onSubmit }) => {
       //   ym(window.yaCounterId, 'reachGoal', 'quiz_completed');
       // }
       
-      // Показываем успешное сообщение или закрываем
-      alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+      // Закрываем квиз и открываем модальное окно с благодарностью
+      setIsCompleted(false);
+      setIsStarted(false);
+      setCurrentStep(1);
+      setAnswers({});
+      setFormData({ name: '', phone: '', email: '' });
+      setErrors({});
+      
+      if (onOpenThankYou) {
+        onOpenThankYou();
+      }
       
     } catch (error) {
       console.error('Quiz submission error:', error);
@@ -321,4 +328,4 @@ const QuizBlock = ({ onSubmit }) => {
   );
 };
 
-export default QuizBlock; 
+export default QuizBlock;

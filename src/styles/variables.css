@@ -1,7 +1,7 @@
 :root {
   /* Цветовая палитра */
-  --primary-blue: #2563EB;
-  --dark-blue: #1E40AF;
+  --primary-blue: var(--primary-color);
+  --dark-blue: var(--link-hover);
   --background-primary: #FFFFFF;
   --background-secondary: #F9FAFB;
   --text-primary: #1F2937;

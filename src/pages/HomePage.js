@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import '../App.css';
 import Header from '../components/Header/header.jsx';
-import Hero from '../components/Hero/Hero.jsx';
-import QuizBlock from '../components/QuizBlock/QuizBlock.jsx';
-import WhyChooseUs from '../components/WhyChooseUs/WhyChooseUs.jsx';
-import ProjectsOverview from '../components/ProjectsOverview/ProjectsOverview.jsx';
-import DevelopmentStages from '../components/DevelopmentStages/DevelopmentStages.jsx';
-import PricingPackages from '../components/PricingPackages/PricingPackages.jsx';
-import FAQBlock from '../components/FAQBlock/FAQBlock.jsx';
-import ConsultationBlock from '../components/ConsultationBlock/ConsultationBlock.jsx';
-import BriefModal from '../components/BriefModal/BriefModal.jsx';
-import Footer from '../components/Footer/footer.jsx';
+import { projectsData } from '../config/projects';
+
+const Hero = lazy(() => import('../components/Hero/Hero.jsx'));
+const QuizBlock = lazy(() => import('../components/QuizBlock/QuizBlock.jsx'));
+const WhyChooseUs = lazy(() => import('../components/WhyChooseUs/WhyChooseUs.jsx'));
+const DevelopmentStages = lazy(() => import('../components/DevelopmentStages/DevelopmentStages.jsx'));
+const PricingPackages = lazy(() => import('../components/PricingPackages/PricingPackages.jsx'));
+const FAQBlock = lazy(() => import('../components/FAQBlock/FAQBlock.jsx'));
+const ConsultationBlock = lazy(() => import('../components/ConsultationBlock/ConsultationBlock.jsx'));
+const BriefModal = lazy(() => import('../components/BriefModal/BriefModal.jsx'));
+const Footer = lazy(() => import('../components/Footer/footer.jsx'));
+const ProjectsOverview = lazy(() => import('../components/ProjectsOverview/ProjectsOverview.jsx'));
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,12 +26,10 @@ function HomePage() {
   };
 
   const handleSubmitBrief = (formData) => {
-    console.log('Brief submitted:', formData);
     // Здесь будет логика отправки данных на сервер
   };
 
   const handleQuizSubmit = (quizData) => {
-    console.log('Quiz submitted:', quizData);
     // Здесь будет логика отправки данных квиза
     // Можно интегрировать с CRM или отправлять на email
   };
@@ -40,12 +40,12 @@ function HomePage() {
   const heroData = {
     title: "EAM Digital",
     subtitle: "Создаём мобильные решения, которые увеличивают прибыль",
-    description: "Подберем подходящее решение с учетом целей и возможностей вашего бизнеса. Разрабатываем приложения для iOS и Android с использованием современных технологий.",
+    description: "Создадим бизнес-приложение за 6 недель — с аналитикой, дизайном и поддержкой роста. Скидка 10% до конца месяца!",
     utp: [
-      "MVP за 5 недель",
-      "Прозрачный процесс разработки", 
-      "Сопровождение и поддержка 24/7",
-      "Команда in-house, без фрилансеров"
+      "Разрабатываем MVP и проверяем идею",
+      "6 недель — и вы привлекаете первых клиентов",
+      "Полный цикл: от CustDev до запуска и аналитики",
+      "MVP до 5 экранов"
     ],
     primaryAction: {
       label: 'Обсудить проект',
@@ -54,49 +54,7 @@ function HomePage() {
     variant: 'gradient' // Используем градиентный вариант для более современного вида
   };
 
-  // Данные для проектов
-  const projectsData = {
-    title: "Наши проекты",
-    subtitle: "Создаём решения, которые помогают бизнесу расти и развиваться",
-    projects: [
-      {
-        id: 1,
-        title: "Мобильное приложение для доставки",
-        description: "Разработали iOS и Android приложение для крупной сети ресторанов",
-        category: "Мобильная разработка",
-        image: "/images/project-delivery.jpg",
-        stats: {
-          users: "50K+",
-          rating: "4.8",
-          downloads: "100K+"
-        }
-      },
-      {
-        id: 2,
-        title: "CRM система для B2B",
-        description: "Веб-платформа для управления клиентами и продажами",
-        category: "Веб-разработка",
-        image: "/images/project-crm.jpg",
-        stats: {
-          companies: "200+",
-          efficiency: "+40%",
-          users: "5K+"
-        }
-      },
-      {
-        id: 3,
-        title: "Финтех решение",
-        description: "Мобильное приложение для управления инвестициями",
-        category: "Финтех",
-        image: "/images/project-fintech.jpg",
-        stats: {
-          volume: "$10M+",
-          users: "25K+",
-          growth: "+150%"
-        }
-      }
-    ]
-  };
+  // projectsData импортируется из config/projects
 
   // Данные для этапов разработки
   const developmentStagesData = {
@@ -170,8 +128,8 @@ function HomePage() {
         id: 1,
         name: "MVP",
         description: "Проверка гипотезы и запуск в сторы",
-        priceRange: "500 000 – 800 000 ₽",
-        duration: "Сроки от 5 недель",
+        priceRange: "300 000 ₽",
+        duration: "Сроки: 6 недель",
         features: [
           "Базовый функционал приложения",
           "UX/UI дизайн для iOS и Android",
@@ -185,7 +143,7 @@ function HomePage() {
         id: 2,
         name: "Business",
         description: "Интеграции (CRM, API), расширенный функционал",
-        priceRange: "800 000 – 1 500 000 ₽",
+        priceRange: "600 000 ₽",
         duration: "Сроки от 8 недель",
         features: [
           "Расширенный функционал и интеграции",
@@ -199,9 +157,9 @@ function HomePage() {
       },
       {
         id: 3,
-        name: "Enterprise",
+        name: "Premium",
         description: "Сложные проекты с AI, BI, ML",
-        priceRange: "от 1 500 000 ₽",
+        priceRange: "от 1 000 000 ₽",
         duration: "Сроки от 12 недель",
         features: [
           "Сложные проекты с AI, BI, ML",
@@ -211,7 +169,7 @@ function HomePage() {
           "Техническая поддержка 12 месяцев",
           "Персональный менеджер проекта"
         ],
-        ctaText: "Обсудить Enterprise"
+        ctaText: "Обсудить Premium"
       },
       {
         id: 4,
@@ -299,31 +257,32 @@ function HomePage() {
   return (
     <div className="App">
       <Header onOpenModal={handleOpenModal} />
-      <Hero 
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        description={heroData.description}
-        utp={heroData.utp}
-        primaryAction={heroData.primaryAction}
-        variant={heroData.variant}
-        onScroll={() => console.log('Scroll indicator clicked')}
-      />
-      <QuizBlock onSubmit={handleQuizSubmit} />
-      <WhyChooseUs 
-        title={whyChooseUsData.title}
-        ctaButton={whyChooseUsData.ctaButton}
-      />
-      <PricingPackages data={pricingPackagesData} onOpenModal={handleOpenModal} />
-      <ProjectsOverview data={projectsData} onOpenModal={handleOpenModal} />
-      <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
-      <FAQBlock data={faqData} />
-      <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
-      <Footer socialLinks={footerData.socialLinks} />
-      <BriefModal 
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onSubmit={handleSubmitBrief}
-      />
+      <Suspense fallback={<div />}> 
+        <Hero 
+          title={heroData.title}
+          subtitle={heroData.subtitle}
+          description={heroData.description}
+          utp={heroData.utp}
+          primaryAction={heroData.primaryAction}
+          variant={heroData.variant}
+        />
+        <QuizBlock onSubmit={handleQuizSubmit} />
+        <PricingPackages data={pricingPackagesData} onOpenModal={handleOpenModal} />
+        <WhyChooseUs 
+          title={whyChooseUsData.title}
+          ctaButton={whyChooseUsData.ctaButton}
+        />
+        <ProjectsOverview data={projectsData} />
+        <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
+        <FAQBlock data={faqData} />
+        <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
+        <Footer socialLinks={footerData.socialLinks} />
+        <BriefModal 
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onSubmit={handleSubmitBrief}
+        />
+      </Suspense>
     </div>
   );
 }

@@ -1,39 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import styles from './PricingPackages.module.css';
 
 const PricingPackages = ({ data, onOpenModal }) => {
-  const [visibleCards, setVisibleCards] = useState(new Set());
-  const cardRefs = useRef([]);
-
-  useEffect(() => {
-    const observers = [];
-
-    cardRefs.current.forEach((cardRef, index) => {
-      if (cardRef) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setVisibleCards(prev => new Set([...prev, index]));
-              }
-            });
-          },
-          {
-            threshold: 0.3, // Анимация запускается когда 30% карточки видно
-            rootMargin: '0px 0px -50px 0px' // Небольшой отступ снизу
-          }
-        );
-
-        observer.observe(cardRef);
-        observers.push(observer);
-      }
-    });
-
-    return () => {
-      observers.forEach(observer => observer.disconnect());
-    };
-  }, []);
-
   return (
     <section className={styles.pricingPackages}>
       <div className={styles.container}>
@@ -43,12 +11,8 @@ const PricingPackages = ({ data, onOpenModal }) => {
         </div>
         
         <div className={styles.packagesGrid}>
-          {data.packages.map((pkg, index) => (
-            <div 
-              key={pkg.id} 
-              className={`${styles.packageCard} ${visibleCards.has(index) ? styles.visible : ''}`}
-              ref={el => cardRefs.current[index] = el}
-            >
+          {data.packages.map((pkg) => (
+            <div key={pkg.id} className={styles.packageCard}>
               <div className={styles.packageHeader}>
                 <h3 className={styles.packageTitle}>{pkg.name}</h3>
                 <p className={styles.packageDescription}>{pkg.description}</p>
@@ -64,8 +28,8 @@ const PricingPackages = ({ data, onOpenModal }) => {
               <div className={styles.packageFeatures}>
                 <h4 className={styles.featuresTitle}>Что включено:</h4>
                 <ul className={styles.featuresList}>
-                  {pkg.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className={styles.featureItem}>
+                  {pkg.features.map((feature, index) => (
+                    <li key={index} className={styles.featureItem}>
                       <svg 
                         className={styles.checkIcon} 
                         width="16" 

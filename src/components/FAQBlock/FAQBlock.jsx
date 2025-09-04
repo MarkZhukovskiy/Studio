@@ -46,7 +46,15 @@ const FAQBlock = ({ data }) => {
               
               <div className={styles.answerContainer}>
                 <div className={styles.answer}>
-                  <p>{item.answer}</p>
+                  {Array.isArray(item.answer) ? (
+                    <ul>
+                      {item.answer.map((ans, i) => (
+                        <li key={i}>{ans}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>{item.answer}</p>
+                  )}
                 </div>
               </div>
             </div>

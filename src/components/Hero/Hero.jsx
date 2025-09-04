@@ -169,8 +169,8 @@ const Hero = ({
         <circle cx="50" cy="50" r="25" fill="#06B6D4" opacity="0.12" />
       </svg>
       <svg className={styles.svgBgAnimated2} viewBox="0 0 120 120" fill="none">
-        <rect x="20" y="20" width="80" height="80" rx="30" fill="#8B5CF6" opacity="0.07" />
-        <rect x="40" y="40" width="40" height="40" rx="20" fill="#2563EB" opacity="0.10" />
+        <rect x="20" y="20" width="80" height="80" rx="30" fill="#2563EB" opacity="0.07" />
+        <rect x="40" y="40" width="40" height="40" rx="20" fill="#1D4ED8" opacity="0.10" />
       </svg>
       <svg className={styles.svgBgAnimated3} viewBox="0 0 90 90" fill="none">
         <ellipse cx="45" cy="45" rx="40" ry="20" fill="#10B981" opacity="0.08" />
@@ -182,7 +182,7 @@ const Hero = ({
       </svg>
       <svg className={styles.svgBgAnimated5} viewBox="0 0 110 110" fill="none">
         <rect x="20" y="20" width="70" height="70" rx="35" fill="#06B6D4" opacity="0.07" />
-        <circle cx="55" cy="55" r="30" fill="#8B5CF6" opacity="0.09" />
+        <circle cx="55" cy="55" r="30" fill="#2563EB" opacity="0.09" />
       </svg>
       <div className={styles.container}>
         <div className={styles.content}>
