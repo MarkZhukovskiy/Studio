@@ -248,7 +248,7 @@ function HomePage() {
   // Данные для футера
   const footerData = {
     socialLinks: [
-      { name: 'Telegram', url: 'https://t.me/...' },
+      { name: 'Telegram', url: 'https://t.me/Mark_Zhukovskiy' },
       { name: 'Instagram', url: 'https://instagram.com/...' },
       { name: 'LinkedIn', url: 'https://linkedin.com/...' }
     ]
