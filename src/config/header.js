@@ -11,7 +11,14 @@ const whatsappIcon = (
 );
 
 const headerConfig = {
-  navigationItems: [],
+  navigationItems: [
+    { id: 'projects', label: 'Проекты', href: '#projects' },
+    { id: 'pricing', label: 'Тарифы', href: '#pricing' },
+    { id: 'stages', label: 'Этапы', href: '#stages' },
+    { id: 'why', label: 'Почему мы', href: '#why' },
+    { id: 'faq', label: 'FAQ', href: '#faq' },
+    { id: 'contact', label: 'Контакты', href: '#contact' }
+  ],
   email: 'zhukovskiy.mark1106@gmail.com',
   messengers: [
     {

@@ -306,15 +306,27 @@ function HomePage() {
           variant={heroData.variant}
         />
         <QuizBlock onSubmit={handleQuizSubmit} />
-        <PricingPackages data={pricingPackagesData} onOpenModal={handleOpenModal} />
-        <ProjectsOverview data={projectsData} onOpenCase={handleProjectMoreClick} />
-        <WhyChooseUs 
-          title={whyChooseUsData.title}
-          ctaButton={whyChooseUsData.ctaButton}
-        />
-        <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
-        <FAQBlock data={faqData} />
-        <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
+        <div id="pricing">
+          <PricingPackages data={pricingPackagesData} onOpenModal={handleOpenModal} />
+        </div>
+        <div id="projects">
+          <ProjectsOverview data={projectsData} onOpenCase={handleProjectMoreClick} />
+        </div>
+        <div id="why">
+          <WhyChooseUs 
+            title={whyChooseUsData.title}
+            ctaButton={whyChooseUsData.ctaButton}
+          />
+        </div>
+        <div id="stages">
+          <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
+        </div>
+        <div id="faq">
+          <FAQBlock data={faqData} />
+        </div>
+        <div id="contact">
+          <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
+        </div>
         <Footer socialLinks={footerData.socialLinks} />
         <BriefModal 
           isOpen={isModalOpen}
