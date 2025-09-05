@@ -170,7 +170,7 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
         <div className={styles.modalContent}>
           <div className={styles.modalHeader}>
             <h2 className={styles.modalTitle}>
-              Заполните бриф — мы свяжемся с вами в течение дня
+              Заполните бриф — мы свяжемся с вами в ближайшее время
             </h2>
           </div>
 
@@ -183,7 +183,7 @@ const BriefModal = ({ isOpen, onClose, onSubmit, initialService }) => {
                 </svg>
               </div>
               <h3>Спасибо!</h3>
-              <p>Мы получили ваш бриф и свяжемся в течение 24 часов.</p>
+              <p>Мы получили ваш бриф и свяжемся с вами в ближайшее время.</p>
             </div>
           ) : (
             <form className={styles.form} onSubmit={handleSubmit}>
