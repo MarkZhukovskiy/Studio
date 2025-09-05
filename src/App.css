@@ -1,15 +1,4 @@
 /* App.css */
-:root {
-  --primary-color: #2563EB; /* primary blue */
-  --secondary-color: #ffffff;
-  --accent-color: #E8F0FE; /* light blue background */
-  --text-color: #111827; /* dark gray */
-  --link-color: #2563EB;
-  --link-hover: #1D4ED8; /* darker blue */
-  --background-color: #F9FAFB; /* light gray */
-  --border-radius: 12px;
-}
-
 /* Reset */
 * {
   box-sizing: border-box;

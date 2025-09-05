@@ -58,6 +58,7 @@ const AioChatModal = ({ isOpen, onClose, platformLinks = {} }) => {
   const iosUrl = platformLinks.ios || 'https://apps.apple.com/ru';
   const ruStoreUrl = platformLinks.ru || 'https://apps.rustore.ru';
   const webUrl = platformLinks.web || 'https://aiochat.ru';
+  const screenshots = Array.from({ length: 7 }, (_, i) => `/images/aio_images/${i + 1}.png`);
 
   return (
     <div className={styles.modalOverlay} onClick={handleBackdropClick} role="dialog" aria-modal="true" aria-labelledby="aiochat-title">
@@ -92,6 +93,22 @@ const AioChatModal = ({ isOpen, onClose, platformLinks = {} }) => {
           <div className={styles.highlights}>
             <div className={styles.badge}>Работает без VPN</div>
             <div className={styles.badge}>Бесплатный доступ к базовым функциям</div>
+          </div>
+
+          <div className={styles.gallery}>
+            <h3 className={styles.galleryTitle}>Скриншоты</h3>
+            <div className={styles.screenshotGrid}>
+              {screenshots.map((src, idx) => (
+                <img
+                  key={src}
+                  className={styles.screenshot}
+                  src={src}
+                  alt={`AIO Chat скриншот ${idx + 1}`}
+                  loading="lazy"
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.style.display = 'none'; }}
+                />
+              ))}
+            </div>
           </div>
 
           <div className={styles.ctaRow}>

@@ -1,4 +1,13 @@
 :root {
+  /* Base tokens */
+  --primary-color: #2563EB;
+  --secondary-color: #ffffff;
+  --accent-color: #E8F0FE;
+  --text-color: #111827;
+  --link-color: #2563EB;
+  --link-hover: #1D4ED8;
+  --background-color: #F9FAFB;
+  --border-radius: 12px;
   /* Цветовая палитра */
   --primary-blue: var(--primary-color);
   --dark-blue: var(--link-hover);
