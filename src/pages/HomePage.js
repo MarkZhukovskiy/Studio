@@ -1,7 +1,6 @@
 import { useState, lazy, Suspense } from 'react';
 import '../App.css';
 import Header from '../components/Header/header.jsx';
-import { projectsData } from '../config/projects';
 
 const Hero = lazy(() => import('../components/Hero/Hero.jsx'));
 const QuizBlock = lazy(() => import('../components/QuizBlock/QuizBlock.jsx'));
@@ -13,9 +12,11 @@ const ConsultationBlock = lazy(() => import('../components/ConsultationBlock/Con
 const BriefModal = lazy(() => import('../components/BriefModal/BriefModal.jsx'));
 const Footer = lazy(() => import('../components/Footer/footer.jsx'));
 const ProjectsOverview = lazy(() => import('../components/ProjectsOverview/ProjectsOverview.jsx'));
+const AioChatModal = lazy(() => import('../components/AioChatModal/AioChatModal.jsx'));
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAioCaseOpen, setIsAioCaseOpen] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -53,8 +54,6 @@ function HomePage() {
     },
     variant: 'gradient' // Используем градиентный вариант для более современного вида
   };
-
-  // projectsData импортируется из config/projects
 
   // Данные для этапов разработки
   const developmentStagesData = {
@@ -190,6 +189,38 @@ function HomePage() {
     ]
   };
 
+  // Данные для блока проектов
+  const projectsData = {
+    title: "Наши проекты",
+    subtitle: "Мы создаём мобильные приложения для стартапов и компаний — от MVP до масштабных решений",
+    tags: ["Web", "Mobile", "CRM", "AI", "E-commerce", "MVP"],
+    projects: [
+      {
+        id: 'aio-chat',
+        name: 'AIO Chat',
+        category: 'Мобильная разработка / AI',
+        description: 'Универсальное приложение с искусственным интеллектом: чат, генерация графики, аудио и текста.',
+        icon: '/images/aio_logo.png',
+        platforms: [
+          { name: 'iOS', url: 'https://apps.apple.com/ru' },
+          { name: 'Android', url: 'https://apps.rustore.ru' },
+          { name: 'Web', url: 'https://aiochat.ru' }
+        ],
+        tags: ['AI', 'Mobile', 'Web', 'Content'],
+        caseUrl: '/cases/aio-chat'
+      }
+    ],
+    viewAllUrl: '/projects',
+    viewAllLabel: 'Посмотреть все проекты'
+  };
+
+  const aioProject = projectsData.projects.find(p => p.id === 'aio-chat');
+  const aioPlatformLinks = {
+    ios: aioProject?.platforms.find(x => x.name === 'iOS')?.url,
+    ru: aioProject?.platforms.find(x => x.name === 'Android')?.url,
+    web: aioProject?.platforms.find(x => x.name === 'Web')?.url,
+  };
+
   // Данные для FAQ
   const faqData = {
     title: "Часто задаваемые вопросы о мобильных приложениях",
@@ -254,6 +285,14 @@ function HomePage() {
     ]
   };
 
+  const handleProjectMoreClick = (project) => {
+    if (project?.id === 'aio-chat') {
+      setIsAioCaseOpen(true);
+      return true; // предотвращаем переход по ссылке
+    }
+    return false;
+  };
+
   return (
     <div className="App">
       <Header onOpenModal={handleOpenModal} />
@@ -268,11 +307,11 @@ function HomePage() {
         />
         <QuizBlock onSubmit={handleQuizSubmit} />
         <PricingPackages data={pricingPackagesData} onOpenModal={handleOpenModal} />
+        <ProjectsOverview data={projectsData} onOpenCase={handleProjectMoreClick} />
         <WhyChooseUs 
           title={whyChooseUsData.title}
           ctaButton={whyChooseUsData.ctaButton}
         />
-        <ProjectsOverview data={projectsData} />
         <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
         <FAQBlock data={faqData} />
         <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
@@ -281,6 +320,11 @@ function HomePage() {
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           onSubmit={handleSubmitBrief}
+        />
+        <AioChatModal 
+          isOpen={isAioCaseOpen}
+          onClose={() => setIsAioCaseOpen(false)}
+          platformLinks={aioPlatformLinks}
         />
       </Suspense>
     </div>
