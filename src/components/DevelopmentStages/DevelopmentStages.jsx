@@ -1,99 +1,74 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './DevelopmentStages.module.css';
 
+const IconDesign = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2l4 4-10 10-4-4L12 2z"/>
+    <path d="M3 21h6"/>
+  </svg>
+);
+
+const IconPlan = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 3h18v4H3z"/>
+    <path d="M7 7v14"/>
+    <path d="M3 11h18"/>
+  </svg>
+);
+
+const IconCode = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 18l6-6-6-6"/>
+    <path d="M8 6l-6 6 6 6"/>
+  </svg>
+);
+
+const IconLaunch = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M5 13l4 4L19 7"/>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+  </svg>
+);
+
 const DevelopmentStages = ({ data, onOpenModal }) => {
   const { title, subtitle } = data;
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      const stageItems = sectionRef.current.querySelectorAll('[class*="stageCard"]');
-      if (stageItems) {
-        stageItems.forEach((item, index) => {
-          item.style.animationDelay = `${index * 0.15}s`;
-          observer.observe(item);
-        });
-      }
-    }
-
+    const container = sectionRef.current;
+    if (!container) return;
+    const items = Array.from(container.querySelectorAll(`.${styles.item}`));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add(styles.inView); });
+    }, { threshold: 0.15 });
+    items.forEach(i => observer.observe(i));
     return () => observer.disconnect();
   }, []);
 
-  // Новый контент для этапов
-  const customStages = [
+  const steps = [
     {
       id: 1,
-      title: "Анализ и исследование",
-      description: "Глубокий анализ рынка, конкурентов и целевой аудитории. Изучаем потребности пользователей и определяем ключевые функции приложения.",
-      duration: "3-5 дней",
-      deliverables: ["Анализ конкурентов", "Портрет пользователя", "Техническое обоснование"]
+      icon: <IconPlan />,
+      title: 'Проектирование',
+      desc: 'Анализ идеи, ТЗ и прототипы.'
     },
     {
       id: 2,
-      title: "UX/UI дизайн",
-      description: "Создаем интуитивный интерфейс с современным дизайном. Проектируем пользовательский опыт от первого клика до завершения задачи.",
-      duration: "7-10 дней",
-      deliverables: ["Wireframes", "UI Kit", "Интерактивный прототип"]
+      icon: <IconDesign />,
+      title: 'Дизайн',
+      desc: 'UX/UI, дизайн‑система, макеты.'
     },
     {
       id: 3,
-      title: "Архитектура и планирование",
-      description: "Разрабатываем техническую архитектуру, выбираем оптимальные технологии и создаем детальный план разработки.",
-      duration: "5-7 дней",
-      deliverables: ["Техническая архитектура", "План разработки", "Выбор технологий"]
+      icon: <IconCode />,
+      title: 'Разработка и тесты',
+      desc: 'Код, интеграции, QA.'
     },
     {
       id: 4,
-      title: "Разработка MVP",
-      description: "Создаем минимально жизнеспособный продукт с основным функционалом. Используем современные технологии и лучшие практики.",
-      duration: "15-25 дней",
-      deliverables: ["Рабочее приложение", "Основной функционал", "API интеграции"]
-    },
-    {
-      id: 5,
-      title: "Тестирование и оптимизация",
-      description: "Комплексное тестирование на всех устройствах и платформах. Оптимизируем производительность и исправляем ошибки.",
-      duration: "7-10 дней",
-      deliverables: ["Тестирование", "Оптимизация", "Исправление багов"]
-    },
-    {
-      id: 6,
-      title: "Публикация в сторах",
-      description: "Подготавливаем приложение к публикации, создаем описания и скриншоты. Размещаем в App Store и Google Play.",
-      duration: "3-5 дней",
-      deliverables: ["Публикация в сторах", "Оптимизация ASO", "Описание приложения"]
-    },
-    {
-      id: 7,
-      title: "Маркетинг и продвижение",
-      description: "Разрабатываем стратегию продвижения, создаем рекламные кампании и привлекаем первых пользователей.",
-      duration: "10-15 дней",
-      deliverables: ["Маркетинговая стратегия", "Рекламные кампании", "PR активность"]
-    },
-    {
-      id: 8,
-      title: "Аналитика и улучшения",
-      description: "Настраиваем аналитику, отслеживаем ключевые метрики и вносим улучшения на основе данных пользователей.",
-      duration: "5-7 дней",
-      deliverables: ["Настройка аналитики", "Отчеты по метрикам", "План улучшений"]
-    },
-    {
-      id: 9,
-      title: "Поддержка и развитие",
-      description: "Обеспечиваем техническую поддержку, обновляем приложение и добавляем новый функционал на основе обратной связи.",
-      duration: "Постоянно",
-      deliverables: ["Техподдержка", "Обновления", "Новые функции"]
+      icon: <IconLaunch />,
+      title: 'Запуск и поддержка',
+      desc: 'Публикация и техподдержка.'
     }
   ];
 
@@ -105,47 +80,13 @@ const DevelopmentStages = ({ data, onOpenModal }) => {
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
 
-        <div className={styles.stagesContainer}>
-          <div className={styles.stagesGrid}>
-            {customStages.map((stage, index) => (
-              <div 
-                key={stage.id} 
-                className={styles.stageCard}
-              >
-                <div className={styles.stageBackground}>
-                  <div className={styles.stageNumber}>{String(index + 1).padStart(2, '0')}</div>
-                  <div className={styles.stageGlow}></div>
-                </div>
-                
-                <div className={styles.stageContent}>
-                  <div className={styles.stageIcon}>
-                    <svg viewBox="0 0 24 24" fill="none" className={styles.stageSvg}>
-                      <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M10.5 6V10.5L13.5 13.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  
-                  <h3 className={styles.stageTitle}>{stage.title}</h3>
-                  <p className={styles.stageDescription}>{stage.description}</p>
-                  
-                  <div className={styles.stageMeta}>
-                    <div className={styles.stageDuration}>
-                      <span className={styles.durationIcon}>⏱</span>
-                      {stage.duration}
-                    </div>
-                    
-                    <div className={styles.stageDeliverables}>
-                      <h4>Результаты:</h4>
-                      <ul>
-                        {stage.deliverables.map((item, idx) => (
-                          <li key={idx}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={styles.stageConnector}></div>
+        <div className={styles.timeline}>
+          <div className={styles.items}>
+            {steps.map((s, i) => (
+              <div key={s.id} className={styles.item} style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className={styles.icon}>{s.icon}</div>
+                <h3 className={styles.itemTitle}>{s.title}</h3>
+                <p className={styles.itemDesc}>{s.desc}</p>
               </div>
             ))}
           </div>
