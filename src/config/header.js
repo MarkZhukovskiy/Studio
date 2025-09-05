@@ -12,7 +12,7 @@ const whatsappIcon = (
 
 const headerConfig = {
   navigationItems: [],
-  email: 'hello@company.ru',
+  email: 'zhukovskiy.mark1106@gmail.com',
   messengers: [
     {
       name: 'telegram',
