@@ -31,6 +31,9 @@ const WebIcon = () => (
 const ProjectsOverview = ({ data, onOpenCase }) => {
   const { title, subtitle, projects, viewAllUrl, viewAllLabel, tags } = data;
 
+  const repeatTimes = 4; // original + 3 duplicates
+  const displayProjects = Array.from({ length: repeatTimes }, () => projects).flat();
+
   const handleMoreClick = (e, project) => {
     if (!onOpenCase) return; 
     const handled = onOpenCase(project);
@@ -41,6 +44,30 @@ const ProjectsOverview = ({ data, onOpenCase }) => {
 
   return (
     <section className={styles.projectsOverview}>
+      <div className={styles.backgroundIcons} aria-hidden="true">
+        <svg className={`${styles.icon} ${styles.icon1}`} viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <circle cx="32" cy="32" r="20" stroke="currentColor" strokeWidth="2" fill="none" strokeOpacity="0.65" />
+        </svg>
+        <svg className={`${styles.icon} ${styles.icon2}`} viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <polygon points="32 12, 52 52, 12 52" stroke="currentColor" strokeWidth="2" fill="none" strokeOpacity="0.65" />
+        </svg>
+        <svg className={`${styles.icon} ${styles.icon3}`} viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <path d="M32 12 L32 52 M12 32 L52 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" strokeOpacity="0.65" />
+        </svg>
+        <svg className={`${styles.icon} ${styles.icon4}`} viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <rect x="20" y="20" width="24" height="24" rx="3" transform="rotate(45 32 32)" stroke="currentColor" strokeWidth="2" fill="none" strokeOpacity="0.65" />
+        </svg>
+        <svg className={`${styles.icon} ${styles.icon5}`} viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <g fill="none" stroke="currentColor" strokeWidth="2" strokeOpacity="0.65">
+            <circle cx="20" cy="20" r="2" />
+            <circle cx="32" cy="20" r="2" />
+            <circle cx="44" cy="20" r="2" />
+            <circle cx="26" cy="32" r="2" />
+            <circle cx="38" cy="32" r="2" />
+            <circle cx="32" cy="44" r="2" />
+          </g>
+        </svg>
+      </div>
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>{title}</h2>
@@ -55,8 +82,8 @@ const ProjectsOverview = ({ data, onOpenCase }) => {
         </div>
 
         <div className={styles.grid}>
-          {projects.map((project) => (
-            <div key={project.id} className={styles.card}>
+          {displayProjects.map((project, idx) => (
+            <div key={`${project.id}-${idx}`} className={styles.card}>
               <div className={styles.logoWrapper}>
                 {project.icon ? (
                   <img className={styles.logo} src={project.icon} alt={`${project.name} logo`} loading="lazy" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.jpg'; }} />
@@ -109,12 +136,6 @@ const ProjectsOverview = ({ data, onOpenCase }) => {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className={styles.viewAllWrapper}>
-          <a href={viewAllUrl} className={`btn-primary ${styles.viewAllButton}`}>
-            {viewAllLabel}
-          </a>
         </div>
       </div>
     </section>
