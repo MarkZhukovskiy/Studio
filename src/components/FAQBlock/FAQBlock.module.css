@@ -4,6 +4,42 @@
   background: var(--background-secondary);
 }
 
+.faqSectionBlue {
+  background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 60%, #3B82F6 100%);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.faqSectionBlue .title {
+  color: #FFFFFF;
+}
+
+.faqSectionBlue .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.faqSectionBlue .faqItem {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.faqSectionBlue .questionButton:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.faqSectionBlue .questionText {
+  color: #FFFFFF;
+}
+
+.faqSectionBlue .arrowIcon {
+  color: #FFFFFF;
+}
+
+.faqSectionBlue .answer {
+  color: rgba(255, 255, 255, 0.95);
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;

@@ -29,7 +29,7 @@ function Footer({ socialLinks }) {
           </ul>
         )}
         <div className={styles.copyright}>
-          © {new Date().getFullYear()} A&M Create. Все права защищены.
+          © {new Date().getFullYear()} Mobile First. Все права защищены.
         </div>
       </div>
     </footer>

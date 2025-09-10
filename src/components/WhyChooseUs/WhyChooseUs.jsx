@@ -38,7 +38,7 @@ function WhyChooseUs({
           <circle cx="24" cy="24" r="20" stroke="#2563EB" strokeWidth="2" fill="none" opacity="0.3"/>
         </svg>
       ),
-      title: "5 лет на рынке",
+      title: "5 лет опыта в мобильной разработке, Telegram-ботах, AI-проектах и e-commerce",
       description: "Богатый опыт в разработке мобильных приложений и веб-сервисов"
     },
     {
@@ -54,7 +54,7 @@ function WhyChooseUs({
           <circle cx="28" cy="34" r="4" fill="#06B6D4"/>
         </svg>
       ),
-      title: "16 профессиональных сотрудников",
+      title: "13+ профессиональных сотрудников",
       description: "Команда экспертов в различных технологиях разработки"
     },
     {
@@ -135,7 +135,7 @@ function WhyChooseUs({
         {ctaButton && (
           <div className={styles.ctaWrapper}>
             <button 
-              className={styles.ctaButton}
+              className="btn-primary"
               onClick={ctaButton.onClick}
             >
               {ctaButton.label}

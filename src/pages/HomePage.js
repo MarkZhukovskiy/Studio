@@ -13,10 +13,12 @@ const BriefModal = lazy(() => import('../components/BriefModal/BriefModal.jsx'))
 const Footer = lazy(() => import('../components/Footer/footer.jsx'));
 const ProjectsOverview = lazy(() => import('../components/ProjectsOverview/ProjectsOverview.jsx'));
 const AioChatModal = lazy(() => import('../components/AioChatModal/AioChatModal.jsx'));
+const ThankYouModal = lazy(() => import('../components/ThankYouModal/ThankYouModal.jsx'));
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAioCaseOpen, setIsAioCaseOpen] = useState(false);
+  const [isThankYouOpen, setIsThankYouOpen] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -39,14 +41,14 @@ function HomePage() {
   
   // Данные для Hero секции
   const heroData = {
-    title: "EAM Digital",
+    title: "Mobile First",
     subtitle: "Создаём мобильные решения, которые увеличивают прибыль",
-    description: "Создадим бизнес-приложение за 6 недель — с аналитикой, дизайном и поддержкой роста. Скидка 10% до конца месяца!",
+    description: "Создадим бизнес-приложение за 5–6 недель — с аналитикой, дизайном и поддержкой роста. Скидка 10% до конца месяца!",
     utp: [
-      "Разрабатываем MVP и проверяем идею",
-      "6 недель — и вы привлекаете первых клиентов",
-      "Полный цикл: от CustDev до запуска и аналитики",
-      "MVP до 5 экранов"
+      "MVP за 5–6 недель",
+                "5–6 недель — и вы привлекаете первых клиентов",
+      "Полный цикл: от исследования идеи до запуска и аналитики",
+      "MVP от 3 экранов"
     ],
     primaryAction: {
       label: 'Обсудить проект',
@@ -108,12 +110,6 @@ function HomePage() {
         title: "Продвижение приложения",
         description: "Запускаем маркетинговые кампании для привлечения пользователей",
         duration: "Постоянно"
-      },
-      {
-        id: 9,
-        title: "Гарантия на работы",
-        description: "Обеспечиваем техническую поддержку и обновления",
-        duration: "1 год"
       }
     ]
   };
@@ -128,7 +124,7 @@ function HomePage() {
         name: "MVP",
         description: "Проверка гипотезы и запуск в сторы",
         priceRange: "300 000 ₽",
-        duration: "Сроки: 6 недель",
+        duration: "MVP за 5–6 недель",
         features: [
           "Базовый функционал приложения",
           "UX/UI дизайн для iOS и Android",
@@ -150,9 +146,9 @@ function HomePage() {
           "Интеграция с CRM и внешними API",
           "Продвинутая аналитика и отчеты",
           "Техническая поддержка 6 месяцев",
-          "ASO оптимизация"
+          "Оптимизация карточек в сторах"
         ],
-        ctaText: "Обсудить проект"
+        ctaText: "Обсудить Business"
       },
       {
         id: 3,
@@ -173,11 +169,11 @@ function HomePage() {
       {
         id: 4,
         name: "Поддержка",
-        description: "SLA, обновления, развитие продукта",
+        description: "Гарантии, обновления и развитие продукта",
         priceRange: "от 50 000 ₽/мес",
         duration: "Ежемесячная подписка",
         features: [
-          "SLA гарантии и мониторинг",
+          "Гарантии и мониторинг",
           "Регулярные обновления и фичи",
           "Развитие продукта по метрикам",
           "Техническая поддержка 24/7",
@@ -210,8 +206,8 @@ function HomePage() {
         caseUrl: '/cases/aio-chat'
       }
     ],
-    viewAllUrl: '/projects',
-    viewAllLabel: 'Посмотреть все проекты'
+    viewAllUrl: null,
+    viewAllLabel: null
   };
 
   const aioProject = projectsData.projects.find(p => p.id === 'aio-chat');
@@ -242,7 +238,11 @@ function HomePage() {
         answer: [
           "Если у вас повторяющиеся транзакции (например, доставка еды)",
           "Если важна лояльность клиентов (программа лояльности в приложении)",
-          "Если ваш сайт недостаточно удобен на мобильных устройствах"
+          "Если ваш сайт недостаточно удобен на мобильных устройствах",
+          "Персонализация и рекомендации",
+          "Сохранение пользовательских сессий (без постоянных разлогиниваний)",
+          "Быстрые способы авторизации",
+          "Работа с геолокацией (магазины, клиенты)"
         ]
       },
       {
@@ -251,7 +251,10 @@ function HomePage() {
         answer: [
           "Высокая скорость работы (нет зависимости от браузера)",
           "Возможность интеграции с камерой, GPS, платежными системами",
-          "Брендированное присутствие на устройстве пользователя"
+          "Брендированное присутствие на устройстве пользователя",
+          "Push-уведомления",
+          "Использование AR/VR технологий",
+          "Расширенные способы оплаты (Apple Pay, Google Pay и др.)"
         ]
       }
     ],
@@ -305,7 +308,7 @@ function HomePage() {
           primaryAction={heroData.primaryAction}
           variant={heroData.variant}
         />
-        <QuizBlock onSubmit={handleQuizSubmit} />
+        <QuizBlock onSubmit={handleQuizSubmit} onOpenThankYou={() => setIsThankYouOpen(true)} />
         <div id="pricing">
           <PricingPackages data={pricingPackagesData} onOpenModal={handleOpenModal} />
         </div>
@@ -322,7 +325,7 @@ function HomePage() {
           <DevelopmentStages data={developmentStagesData} onOpenModal={handleOpenModal} />
         </div>
         <div id="faq">
-          <FAQBlock data={faqData} />
+          <FAQBlock data={faqData} variant="blue" />
         </div>
         <div id="contact">
           <ConsultationBlock data={consultationData} onOpenModal={handleOpenModal} />
@@ -337,6 +340,10 @@ function HomePage() {
           isOpen={isAioCaseOpen}
           onClose={() => setIsAioCaseOpen(false)}
           platformLinks={aioPlatformLinks}
+        />
+        <ThankYouModal 
+          isOpen={isThankYouOpen}
+          onClose={() => setIsThankYouOpen(false)}
         />
       </Suspense>
     </div>

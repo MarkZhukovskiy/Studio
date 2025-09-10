@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './FAQBlock.module.css';
 
-const FAQBlock = ({ data }) => {
+const FAQBlock = ({ data, variant = 'default' }) => {
   const [activeItem, setActiveItem] = useState(0);
   const { title, subtitle, faqItems } = data;
 
@@ -10,7 +10,7 @@ const FAQBlock = ({ data }) => {
   };
 
   return (
-    <section className={styles.faqSection}>
+    <section className={`${styles.faqSection} ${variant === 'blue' ? styles.faqSectionBlue : ''}`}>
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>{title}</h2>

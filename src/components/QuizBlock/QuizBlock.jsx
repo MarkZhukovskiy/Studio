@@ -183,7 +183,7 @@ const QuizBlock = ({ onSubmit, onOpenThankYou }) => {
               Пройдите короткий квиз из 4 вопросов и получите персональное предложение
             </p>
             <button className={styles.startButton} onClick={handleStart}>
-              Начать квиз
+              <span>Начать квиз</span>
               <svg className={styles.buttonArrow} viewBox="0 0 24 24" fill="none">
                 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -201,10 +201,9 @@ const QuizBlock = ({ onSubmit, onOpenThankYou }) => {
         <div className={styles.container}>
           <div className={styles.finalCard}>
             <div className={styles.finalIcon}>✅</div>
-            <h2 className={styles.finalTitle}>Спасибо!</h2>
+            {/* Убрали заголовок "Спасибо!" по ТЗ */}
             <p className={styles.finalDescription}>
-              Мы уже собрали предварительные данные по вашему проекту.
-              Оставьте контакты, и наш эксперт свяжется с вами в течение 15 минут.
+              Мы собрали предварительные данные по вашему проекту. Чтобы наш менеджер связался с вами — оставьте, пожалуйста, свои контакты.
             </p>
             
             <form className={styles.finalForm} onSubmit={handleFormSubmit}>
@@ -246,7 +245,7 @@ const QuizBlock = ({ onSubmit, onOpenThankYou }) => {
               
               <button 
                 type="submit" 
-                className={styles.submitButton}
+                className={`btn-primary ${styles.submitButton}`}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Отправляем...' : 'Получить консультацию'}

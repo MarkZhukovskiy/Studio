@@ -1,6 +1,6 @@
 .section {
   padding: var(--spacing-4xl) 0;
-  background: var(--background-secondary);
+  background: var(--background-primary);
   position: relative;
   overflow: hidden;
   opacity: 0;
@@ -82,9 +82,9 @@
 }
 
 .advantageCard:hover {
-  transform: translateY(-8px);
+  transform: scale(1.03);
   box-shadow: var(--shadow-xl);
-  border-color: #1D4ED8;
+  border-color: var(--primary-blue);
 }
 
 .advantageCard:hover::before {

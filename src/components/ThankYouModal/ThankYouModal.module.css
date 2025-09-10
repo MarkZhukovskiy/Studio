@@ -1,0 +1,131 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-md);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+  background: var(--background-primary);
+  border-radius: var(--radius-lg);
+  max-width: 560px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: modalIn 0.3s ease-out;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #333;
+  transform: scale(1.1);
+}
+
+.content {
+  padding: var(--spacing-3xl) var(--spacing-2xl) var(--spacing-2xl);
+  text-align: center;
+}
+
+.icon {
+  font-size: 56px;
+  margin-bottom: var(--spacing-md);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-xl);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+
+.primaryButton {
+  background: var(--primary-blue);
+  color: var(--background-primary);
+  border: 2px solid var(--dark-blue);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+}
+
+.primaryButton:hover {
+  background: var(--dark-blue);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.secondaryLink {
+  color: var(--hover-blue);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+}
+
+.secondaryLink:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: var(--spacing-2xl) var(--spacing-xl);
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .primaryButton {
+    width: 100%;
+  }
+} 

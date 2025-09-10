@@ -49,7 +49,7 @@ const ConsultationBlock = ({ data, onOpenModal }) => {
           
           <div className={styles.ctaSection}>
             <button 
-              className={styles.ctaButton}
+              className="btn-primary"
               onClick={onOpenModal}
             >
               <span className={styles.buttonText}>{buttonText}</span>

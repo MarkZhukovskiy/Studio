@@ -1,7 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "description": "EAM Digital — разработка мобильных приложений и веб-сервисов под ключ. Дизайн, поддержка, продвижение.",
+  "short_name": "Mobile First",
+  "name": "Mobile First",
+  "description": "Mobile First — разработка мобильных приложений, Telegram-ботов, AI-проектов и e-commerce под ключ.",
   "icons": [
     {
       "src": "favicon.ico",

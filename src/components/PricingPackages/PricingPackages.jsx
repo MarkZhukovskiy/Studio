@@ -19,7 +19,7 @@ const PricingPackages = ({ data, onOpenModal }) => {
               </div>
               
               <div className={styles.packagePrice}>
-                <span className={styles.priceRange}>{pkg.priceRange}</span>
+                <span className={styles.priceRange}>{(pkg.priceRange && pkg.priceRange.trim().toLowerCase().startsWith('от')) ? pkg.priceRange : `от ${(pkg.priceRange || '').trim()}`}</span>
                 {pkg.duration && (
                   <span className={styles.duration}>{pkg.duration}</span>
                 )}
@@ -53,7 +53,7 @@ const PricingPackages = ({ data, onOpenModal }) => {
               </div>
               
               <button 
-                className={styles.ctaButton}
+                className={`${styles.ctaButton} btn-primary`}
                 onClick={onOpenModal}
               >
                 {pkg.ctaText}
@@ -64,8 +64,7 @@ const PricingPackages = ({ data, onOpenModal }) => {
         
         <div className={styles.note}>
           <p>
-            <strong>Важно:</strong> Точная стоимость рассчитывается индивидуально 
-            на основе детального технического задания и объёма работ.
+            Стоимость зависит от сложности проекта. Мы подберём оптимальное решение под вашу задачу.
           </p>
         </div>
       </div>

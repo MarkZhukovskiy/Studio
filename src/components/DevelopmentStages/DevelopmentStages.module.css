@@ -1,7 +1,7 @@
 .developmentStages {
   position: relative;
   padding: var(--spacing-4xl) var(--spacing-lg);
-  background: #FFFFFF;
+  background: var(--background-secondary);
   overflow: hidden;
 }
 
@@ -254,13 +254,169 @@
   z-index: 1;
 }
 
+/* New simplified steps */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-xl);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+/* When there are 5 items, allow the grid to wrap gracefully without breaking spacing */
+@supports (grid-template-columns: subgrid) {
+}
+
+.stepCard {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.06);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal), opacity var(--transition-normal);
+  opacity: 0;
+  transform: translateY(16px);
+  outline: none;
+  cursor: default;
+}
+
+.stepCard:hover {
+  transform: none;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.16);
+  border-color: var(--primary-blue);
+}
+
+.stepCard[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.stepCard[data-visible="true"]:nth-child(1) { animation-delay: 0.05s; }
+.stepCard[data-visible="true"]:nth-child(2) { animation-delay: 0.10s; }
+.stepCard[data-visible="true"]:nth-child(3) { animation-delay: 0.15s; }
+.stepCard[data-visible="true"]:nth-child(4) { animation-delay: 0.20s; }
+.stepCard[data-visible="true"]:nth-child(5) { animation-delay: 0.25s; }
+.stepCard[data-visible="true"]:nth-child(6) { animation-delay: 0.30s; }
+
+.stepCard:focus-visible {
+  outline: none;
+}
+
+.stepBadge {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--primary-blue), #1D4ED8);
+  color: #FFFFFF;
+  font-weight: var(--font-weight-bold);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+.stepsWrapper {
+  position: relative;
+}
+
+@media (min-width: 1025px) {
+  .stepsGrid::before {
+    content: '';
+    position: absolute;
+    top: 44px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.15) 0%, rgba(37, 99, 235, 0.05) 100%);
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepCard,
+  .stepCard:hover,
+  .stepCard[data-visible="true"] {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+.stepCardAccent {
+  position: relative;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFF 100%);
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 14px 34px rgba(37, 99, 235, 0.18);
+}
+
+.stepCardAccent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.12) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.stepIcon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: 14px;
+}
+
+.stepTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.stepText {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.stepCard:hover .stepText {
+  -webkit-line-clamp: unset;
+}
+
+.stepCard:focus .stepText,
+.stepCard:focus-visible .stepText {
+  -webkit-line-clamp: unset;
+}
+
+.stepDuration {
+  font-size: var(--font-size-sm);
+  color: var(--primary-blue);
+  background: rgba(37, 99, 235, 0.08);
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Reuse existing CTA block styles below */
 .cta {
   text-align: center;
   margin-top: var(--spacing-4xl);
-  opacity: 1;
-  visibility: visible;
-  position: relative;
-  z-index: 10;
 }
 
 .ctaButton {
@@ -279,14 +435,6 @@
   gap: var(--spacing-md);
   overflow: hidden;
   text-decoration: none;
-  opacity: 1 !important;
-  visibility: visible !important;
-  z-index: 20;
-}
-
-.ctaButton.visible {
-  opacity: 1 !important;
-  visibility: visible !important;
 }
 
 .ctaButton:hover {
@@ -334,7 +482,13 @@
   }
 }
 
-/* Mobile */
+/* Responsive: 4 → 2 → 1 */
+@media (max-width: 1024px) {
+  .stepsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .developmentStages {
     padding: var(--spacing-3xl) var(--spacing-md);
@@ -370,4 +524,31 @@
     width: 100%;
     justify-content: center;
   }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .stepCard {
+    padding: var(--spacing-lg);
+  }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
 } 
+
+/* Color variants */
+.variant1 .stepIcon { background: rgba(37, 99, 235, 0.08); color: var(--primary-blue); }
+.variant1 .stepBadge { background: linear-gradient(135deg, var(--primary-blue), #1D4ED8); }
+
+.variant2 .stepIcon { background: rgba(139, 92, 246, 0.10); color: #7C3AED; }
+.variant2 .stepBadge { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+
+.variant3 .stepIcon { background: rgba(16, 185, 129, 0.10); color: #059669; }
+.variant3 .stepBadge { background: linear-gradient(135deg, #10B981, #059669); }
+
+.variant4 .stepIcon { background: rgba(245, 158, 11, 0.12); color: #D97706; }
+.variant4 .stepBadge { background: linear-gradient(135deg, #F59E0B, #D97706); } 

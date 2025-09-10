@@ -1,7 +1,19 @@
 .consultationBlock {
   padding: var(--spacing-4xl) var(--spacing-lg);
-  background: var(--primary-blue);
-  color: var(--background-primary);
+  background: var(--background-primary);
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.consultationBlock::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.05) 0%, transparent 45%);
+  pointer-events: none;
 }
 
 .container {
@@ -25,13 +37,13 @@
 .title {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
-  color: var(--background-primary);
+  color: var(--text-primary);
   margin: 0;
 }
 
 .description {
   font-size: var(--font-size-xl);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   line-height: var(--line-height-relaxed);
   margin: 0;
 }
@@ -47,31 +59,31 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--background-secondary);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
   transition: background var(--transition-normal);
 }
 
 .featureItem:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: #EEF2FF;
 }
 
 .featureIcon {
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(37, 99, 235, 0.08);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--background-primary);
+  color: var(--primary-blue);
   flex-shrink: 0;
 }
 
 .featureText {
   font-size: var(--font-size-base);
-  color: var(--background-primary);
+  color: var(--text-primary);
   font-weight: var(--font-weight-medium);
 }
 
@@ -80,8 +92,8 @@
 }
 
 .ctaButton {
-  background: var(--background-primary);
-  color: var(--primary-blue);
+  background: var(--primary-blue);
+  color: var(--background-primary);
   border: none;
   padding: var(--spacing-lg) var(--spacing-2xl);
   border-radius: var(--radius-lg);
@@ -96,7 +108,7 @@
 }
 
 .ctaButton:hover {
-  background: var(--background-secondary);
+  background: #1D4ED8;
   transform: translateY(-2px);
   box-shadow: var(--shadow-xl);
 }

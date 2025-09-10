@@ -51,7 +51,7 @@ const Header = ({ onOpenModal }) => {
           <div className={styles.logo} onClick={handleLogoClick} style={{ cursor: 'pointer' }} tabIndex={0} aria-label="На главную" role="button" onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleLogoClick()}>
             <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 8L20 16L10 24" stroke="#1F2937" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <text x="30" y="20" fill="#1F2937" fontSize="16" fontWeight="600" fontFamily="system-ui">EAM Digital</text>
+              <text x="30" y="20" fill="#1F2937" fontSize="16" fontWeight="600" fontFamily="system-ui">Mobile First</text>
             </svg>
           </div>
 
@@ -104,7 +104,7 @@ const Header = ({ onOpenModal }) => {
               ))}
             </div>
             {/* CTA кнопка */}
-            <button className={styles.ctaButton} onClick={onOpenModal} aria-label="Обсудить проект" tabIndex={0}>
+            <button className="btn-primary" onClick={onOpenModal} aria-label="Обсудить проект" tabIndex={0}>
               Обсудить проект
             </button>
           </div>
@@ -133,7 +133,7 @@ const Header = ({ onOpenModal }) => {
               <div className={styles.logo} onClick={handleLogoClick} style={{ cursor: 'pointer' }} tabIndex={0} aria-label="На главную" role="button" onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleLogoClick()}>
                 <svg width="100" height="26" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 8L20 16L10 24" stroke="#1F2937" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <text x="30" y="20" fill="#1F2937" fontSize="16" fontWeight="600" fontFamily="system-ui">EAM Digital</text>
+                  <text x="30" y="20" fill="#1F2937" fontSize="16" fontWeight="600" fontFamily="system-ui">Mobile First</text>
                 </svg>
               </div>
               <button 
@@ -180,7 +180,7 @@ const Header = ({ onOpenModal }) => {
                   </a>
                 ))}
               </div>
-              <button className={styles.mobileCtaButton} onClick={() => { onOpenModal(); handleMobileMenuClose(); }} aria-label="Обсудить проект" tabIndex={0}>
+              <button className="btn-primary" onClick={() => { onOpenModal(); handleMobileMenuClose(); }} aria-label="Обсудить проект" tabIndex={0}>
                 Обсудить проект
               </button>
             </div>
