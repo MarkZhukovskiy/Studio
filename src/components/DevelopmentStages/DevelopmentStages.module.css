@@ -551,4 +551,17 @@
 .variant3 .stepBadge { background: linear-gradient(135deg, #10B981, #059669); }
 
 .variant4 .stepIcon { background: rgba(245, 158, 11, 0.12); color: #D97706; }
-.variant4 .stepBadge { background: linear-gradient(135deg, #F59E0B, #D97706); } 
+.variant4 .stepBadge { background: linear-gradient(135deg, #F59E0B, #D97706); }
+
+/* New variants for steps 5-8 */
+.variant5 .stepIcon { background: rgba(236, 72, 153, 0.12); color: #DB2777; }
+.variant5 .stepBadge { background: linear-gradient(135deg, #EC4899, #DB2777); }
+
+.variant6 .stepIcon { background: rgba(5, 150, 105, 0.12); color: #0F766E; }
+.variant6 .stepBadge { background: linear-gradient(135deg, #14B8A6, #0F766E); }
+
+.variant7 .stepIcon { background: rgba(99, 102, 241, 0.12); color: #4F46E5; }
+.variant7 .stepBadge { background: linear-gradient(135deg, #818CF8, #4F46E5); }
+
+.variant8 .stepIcon { background: rgba(234, 179, 8, 0.12); color: #B45309; }
+.variant8 .stepBadge { background: linear-gradient(135deg, #FBBF24, #B45309); } 

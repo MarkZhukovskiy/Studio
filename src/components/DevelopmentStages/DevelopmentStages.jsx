@@ -181,7 +181,7 @@ const DevelopmentStages = ({ data, onOpenModal }) => {
               <li
                 key={step.id}
                 ref={(el) => { cardRefs.current[index] = el; }}
-                className={`${styles.stepCard} ${index === 0 || index === arr.length - 1 ? styles.stepCardAccent : ''} ${styles[`variant${(index % 4) + 1}`]}`}
+                className={`${styles.stepCard} ${index === 0 || index === arr.length - 1 ? styles.stepCardAccent : ''} ${styles[`variant${(index % 8) + 1}`]}`}
                 role="listitem"
                 aria-label={`Этап ${index + 1}: ${step.title}. Срок: ${step.duration || ''}`}
                 data-step={index + 1}
