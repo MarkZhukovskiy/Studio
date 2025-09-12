@@ -49,10 +49,7 @@ const Header = ({ onOpenModal }) => {
         <div className={styles.container}>
           {/* Логотип */}
           <div className={styles.logo} onClick={handleLogoClick} style={{ cursor: 'pointer' }} tabIndex={0} aria-label="На главную" role="button" onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleLogoClick()}>
-            <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 8L20 16L10 24" stroke="#1F2937" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <text x="30" y="20" fill="#1F2937" fontSize="16" fontWeight="600" fontFamily="system-ui">Mobile First</text>
-            </svg>
+            <img src="/images/Logo.png" alt="Логотип" loading="eager" />
           </div>
 
           {/* Навигация */}
@@ -131,10 +128,7 @@ const Header = ({ onOpenModal }) => {
           <div className={styles.mobileMenu} role="dialog" aria-modal="true">
             <div className={styles.mobileMenuHeader}>
               <div className={styles.logo} onClick={handleLogoClick} style={{ cursor: 'pointer' }} tabIndex={0} aria-label="На главную" role="button" onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && handleLogoClick()}>
-                <svg width="100" height="26" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M10 8L20 16L10 24" stroke="#1F2937" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <text x="30" y="20" fill="#1F2937" fontSize="16" fontWeight="600" fontFamily="system-ui">Mobile First</text>
-                </svg>
+                <img src="/images/Logo.png" alt="Логотип" loading="eager" />
               </div>
               <button 
                 className={styles.closeButton} 

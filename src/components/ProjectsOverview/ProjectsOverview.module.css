@@ -182,6 +182,7 @@
   background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0));
 }
 
+
 .logo {
   height: 64px;
   width: 64px;
@@ -236,6 +237,41 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Features list inside card */
+.featuresList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text-primary);
+}
+
+/* No-icon variant */
+.featureItemNoIcon {
+  display: block;
+  color: var(--text-primary);
+}
+
+.featureBullet {
+  display: inline-flex;
+  color: var(--primary-blue);
+  line-height: 0;
+  margin-top: 2px;
+}
+
+.featureText {
+  flex: 1;
+}
+
 
 .cardTags {
   display: flex;
@@ -296,6 +332,7 @@
   font-weight: var(--font-weight-semibold);
   transition: background var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
   text-decoration: none;
+  margin-top: auto;
 }
 
 .moreButton:hover {
@@ -375,30 +412,11 @@
   100% { transform: translateX(0); }
 }
 
-
-
 .icon1 { top: 8%; left: 6%; width: 64px; height: 64px; animation: poDriftSlow 14s ease-in-out infinite; }
 .icon2 { top: 18%; right: 10%; width: 48px; height: 48px; animation: poDriftWide 16s ease-in-out infinite; }
 .icon3 { bottom: 22%; left: 12%; width: 72px; height: 72px; animation: poDriftDiagonal 18s ease-in-out infinite; }
 .icon4 { bottom: 10%; right: 6%; width: 56px; height: 56px; animation: poDriftWide 20s ease-in-out infinite reverse; }
 .icon5 { top: 48%; left: 54%; width: 40px; height: 40px; animation: poDriftSlow 22s ease-in-out infinite reverse; }
-
-/* Mix different motions among extras */
-/* .icon6..icon20 were added in later iteration; rolling back to 5 icons */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (prefers-reduced-motion: reduce) {
   .icon { animation: none !important; }

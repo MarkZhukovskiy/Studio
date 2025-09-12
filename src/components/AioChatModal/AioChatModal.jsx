@@ -58,7 +58,7 @@ const AioChatModal = ({ isOpen, onClose, platformLinks = {} }) => {
   const iosUrl = platformLinks.ios || 'https://apps.apple.com/ru';
   const ruStoreUrl = platformLinks.ru || 'https://apps.rustore.ru';
   const webUrl = platformLinks.web || 'https://aiochat.ru';
-  const screenshots = Array.from({ length: 7 }, (_, i) => `/images/aio_images/${i + 1}.png`);
+  const screenshots = Array.from({ length: 7 }, (_, i) => `/images/projects/aio_images/${i + 1}.png`);
 
   return (
     <div className={styles.modalOverlay} onClick={handleBackdropClick} role="dialog" aria-modal="true" aria-labelledby="aiochat-title">
@@ -74,7 +74,7 @@ const AioChatModal = ({ isOpen, onClose, platformLinks = {} }) => {
           <div className={styles.header}>
             <img
               className={styles.logo}
-              src="/images/aio_logo.png"
+              src="/images/projects/aio_images/aio_logo.png"
               alt="AIO Chat"
               onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.jpg'; }}
               loading="lazy"
@@ -112,17 +112,17 @@ const AioChatModal = ({ isOpen, onClose, platformLinks = {} }) => {
           </div>
 
           <div className={styles.ctaRow}>
-            <a href={iosUrl} target="_blank" rel="noopener noreferrer" className={`btn-primary ${styles.ctaButton}`} aria-label="Скачать в App Store">
+            <a href={iosUrl} target="_blank" rel="noopener noreferrer" className={`btn-primary ${styles.ctaButton}`} aria-label="App Store">
               <AppleIcon />
               <span>App Store</span>
             </a>
-            <a href={ruStoreUrl} target="_blank" rel="noopener noreferrer" className={`btn-secondary ${styles.ctaButton}`} aria-label="Открыть в RuStore">
+            <a href={ruStoreUrl} target="_blank" rel="noopener noreferrer" className={`btn-secondary ${styles.ctaButton}`} aria-label="RuStore">
               <RuStoreIcon />
               <span>RuStore</span>
             </a>
-            <a href={webUrl} target="_blank" rel="noopener noreferrer" className={`btn-secondary ${styles.ctaButton}`} aria-label="Сайт проекта">
+            <a href={webUrl} target="_blank" rel="noopener noreferrer" className={`btn-secondary ${styles.ctaButton}`} aria-label="Сайт">
               <WebIcon />
-              <span>Сайт проекта</span>
+              <span>Сайт</span>
             </a>
           </div>
         </div>

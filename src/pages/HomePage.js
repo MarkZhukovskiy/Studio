@@ -13,12 +13,18 @@ const BriefModal = lazy(() => import('../components/BriefModal/BriefModal.jsx'))
 const Footer = lazy(() => import('../components/Footer/footer.jsx'));
 const ProjectsOverview = lazy(() => import('../components/ProjectsOverview/ProjectsOverview.jsx'));
 const AioChatModal = lazy(() => import('../components/AioChatModal/AioChatModal.jsx'));
+const FabulaModal = lazy(() => import('../components/FabulaModal/FabulaModal.jsx'));
 const ThankYouModal = lazy(() => import('../components/ThankYouModal/ThankYouModal.jsx'));
+const AuraModal = lazy(() => import('../components/AuraModal/AuraModal.jsx'));
+const UrModal = lazy(() => import('../components/UrModal/UrModal.jsx'));
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAioCaseOpen, setIsAioCaseOpen] = useState(false);
+  const [isFabulaOpen, setIsFabulaOpen] = useState(false);
   const [isThankYouOpen, setIsThankYouOpen] = useState(false);
+  const [isAuraOpen, setIsAuraOpen] = useState(false);
+  const [isUrOpen, setIsUrOpen] = useState(false);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -195,15 +201,85 @@ function HomePage() {
         id: 'aio-chat',
         name: 'AIO Chat',
         category: 'Мобильная разработка / AI',
-        description: 'Универсальное приложение с искусственным интеллектом: чат, генерация графики, аудио и текста.',
-        icon: '/images/aio_logo.png',
+        description: 'Мобильное и десктопное приложение с ИИ: чат, генерация графики, аудио и контента.',
+        icon: '/images/projects/aio_images/aio_logo.png',
         platforms: [
           { name: 'iOS', url: 'https://apps.apple.com/ru' },
           { name: 'Android', url: 'https://apps.rustore.ru' },
           { name: 'Web', url: 'https://aiochat.ru' }
         ],
+        features: [
+          'Проектирование (прототип, без VPN)',
+          'ChatGPT + голосовой помощник',
+          'Генерация графики, текста, аудио',
+          'История запросов и безопасное хранение'
+        ],
         tags: ['AI', 'Mobile', 'Web', 'Content'],
         caseUrl: '/cases/aio-chat'
+      },
+      {
+        id: 'fabula',
+        name: 'Fabula',
+        category: 'Мобильная разработка',
+        description: 'Напиши свой первый роман',
+        icon: '/images/projects/fabula_images/fabula_logo.webp',
+        platforms: [
+          { name: 'Android', url: 'https://play.google.com/store/apps/details?id=com.fabula.app&pli=1' }
+        ],
+        features: [
+          'Планирование структуры и сюжета книги',
+          'Работа с персонажами и их линиями',
+          'Подсказки и советы для авторов',
+          'Удобный интерфейс для заметок и идей',
+          'Поддержка пошагового написания романа',
+          'Синхронизация прогресса и сохранение данных'
+        ],
+        tags: ['Mobile', 'Productivity'],
+        caseUrl: '/cases/fabula'
+      },
+      // Новый проект: Aura Wallet (после Fabula)
+      {
+        id: 'aura-wallet',
+        name: 'Aura Wallet',
+        category: 'Мобильная разработка / Финтех',
+        description: 'Ваш цифровой кошелёк в смартфоне',
+        icon: '/images/projects/aura/Aura_Logo.webp',
+        platforms: [
+          { name: 'Android', url: 'https://www.rustore.ru/catalog/app/ms.aura.walletapp.release' }
+        ],
+        features: [
+          'Быстрые и безопасные платежи',
+          'Управление банковскими картами и счетами',
+          'Контроль расходов и аналитика трат',
+          'Удобные переводы между пользователями',
+          'Хранение истории операций',
+          'Защита данных и многоуровневая безопасность'
+        ],
+        tags: ['Mobile', 'Fintech'],
+        caseUrl: '/cases/aura-wallet'
+      },
+      // Новый проект: Юропыт — помощь юриста (после Aura Wallet)
+      {
+        id: 'ur',
+        name: 'Юропыт — помощь юриста',
+        category: 'Мобильная разработка / LegalTech',
+        description: 'Быстрая юридическая поддержка в вашем телефоне',
+        icon: '/images/projects/ur/ur_logo.svg',
+        platforms: [
+          { name: 'iOS', url: 'https://apps.apple.com/ru/app/%D1%8E%D1%80%D0%BE%D0%BF%D1%8B%D1%82-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C-%D1%8E%D1%80%D0%B8%D1%81%D1%82%D0%B0/id1659015560' },
+          { name: 'Android', url: 'https://play.google.com/store/apps/details?id=ru.uropit.urp_client' },
+          { name: 'Web', url: 'https://uropit.ru/' }
+        ],
+        features: [
+          'Онлайн-консультации с юристом',
+          'Шаблоны договоров и юридических документов',
+          'Справочные материалы и инструкции по законам',
+          'Уведомления о сроках исковой давности и важных юридических датах',
+          'Обмен сообщениями и чат с поддержкой',
+          'Защита персональных данных и конфиденциальность'
+        ],
+        tags: ['Mobile', 'Legal'],
+        caseUrl: '/cases/ur'
       }
     ],
     viewAllUrl: null,
@@ -293,6 +369,18 @@ function HomePage() {
       setIsAioCaseOpen(true);
       return true; // предотвращаем переход по ссылке
     }
+    if (project?.id === 'fabula') {
+      setIsFabulaOpen(true);
+      return true;
+    }
+    if (project?.id === 'aura-wallet') {
+      setIsAuraOpen(true);
+      return true;
+    }
+    if (project?.id === 'ur') {
+      setIsUrOpen(true);
+      return true;
+    }
     return false;
   };
 
@@ -341,9 +429,25 @@ function HomePage() {
           onClose={() => setIsAioCaseOpen(false)}
           platformLinks={aioPlatformLinks}
         />
+        <FabulaModal 
+          isOpen={isFabulaOpen}
+          onClose={() => setIsFabulaOpen(false)}
+          googlePlayUrl={'https://play.google.com/store/apps/details?id=com.fabula.app&pli=1'}
+        />
+        {/* Новый модал: Aura Wallet */}
+        <AuraModal 
+          isOpen={isAuraOpen}
+          onClose={() => setIsAuraOpen(false)}
+          ruStoreUrl={'https://www.rustore.ru/catalog/app/ms.aura.walletapp.release'}
+        />
         <ThankYouModal 
           isOpen={isThankYouOpen}
           onClose={() => setIsThankYouOpen(false)}
+        />
+        <UrModal 
+          isOpen={isUrOpen}
+          onClose={() => setIsUrOpen(false)}
+          appStoreUrl={'https://apps.apple.com/ru/app/%D1%8E%D1%80%D0%BE%D0%BF%D1%8B%D1%82-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C-%D1%8E%D1%80%D0%B8%D1%81%D1%82%D0%B0/id1659015560'}
         />
       </Suspense>
     </div>

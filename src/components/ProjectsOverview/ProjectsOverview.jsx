@@ -31,8 +31,7 @@ const WebIcon = () => (
 const ProjectsOverview = ({ data, onOpenCase }) => {
   const { title, subtitle, projects, viewAllUrl, viewAllLabel, tags } = data;
 
-  const repeatTimes = 4; // original + 3 duplicates
-  const displayProjects = Array.from({ length: repeatTimes }, () => projects).flat();
+  const displayProjects = projects;
 
   const handleMoreClick = (e, project) => {
     if (!onOpenCase) return; 
@@ -98,7 +97,6 @@ const ProjectsOverview = ({ data, onOpenCase }) => {
                   <div className={styles.category}>{project.category}</div>
                 )}
                 <p className={styles.description}>{project.description}</p>
-
                 {project.tags?.length > 0 && (
                   <div className={styles.cardTags}>
                     {project.tags.map((tag, idx) => (
