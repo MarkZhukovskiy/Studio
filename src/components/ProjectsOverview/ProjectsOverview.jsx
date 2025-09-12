@@ -85,7 +85,7 @@ const ProjectsOverview = ({ data, onOpenCase }) => {
             <div key={`${project.id}-${idx}`} className={styles.card}>
               <div className={styles.logoWrapper}>
                 {project.icon ? (
-                  <img className={styles.logo} src={project.icon} alt={`${project.name} logo`} loading="lazy" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.jpg'; }} />
+                  <img className={`${styles.logo} ${(project.id === 'aio-chat' || project.id === 'ur') ? styles.logoBorder : ''}`} src={project.icon} alt={`${project.name} logo`} loading="lazy" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.jpg'; }} />
                 ) : (
                   <div className={styles.logoPlaceholder}>{project.name?.slice(0, 2) || 'PR'}</div>
                 )}
