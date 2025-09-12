@@ -24,6 +24,15 @@
   overflow: hidden;
 }
 
+.modal:focus {
+  outline: none;
+}
+
+.modal:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
 .closeButton {
   position: absolute;
   top: var(--spacing-lg);
@@ -41,6 +50,11 @@
   background: rgba(0, 0, 0, 0.06);
   color: var(--text-primary);
   transform: scale(1.06);
+}
+
+.closeButton:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 2px;
 }
 
 .content {
@@ -131,6 +145,11 @@
 
 .ctaButton {
   min-width: 220px;
+}
+
+.ctaButton:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 2px;
 }
 
 @keyframes fadeIn {

@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import styles from './AuraModal.module.css';
+import { bodyScrollLocker } from '../../utils/scrollLock';
+import { setImageFallback } from '../../utils/imageFallback';
 
-const RuStoreIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="3" y="6" width="18" height="14" rx="3" stroke="currentColor" strokeWidth="2"/>
-    <path d="M7 6L9 3H15L17 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
+import { RuStoreIcon, FeatureIcons } from './icons';
+import { auraFeatures, auraScreenshots } from './config';
 
 const Feature = ({ icon, text }) => (
   <div className={styles.feature}>
@@ -15,20 +15,57 @@ const Feature = ({ icon, text }) => (
   </div>
 );
 
+Feature.propTypes = {
+  icon: PropTypes.node.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
 const AuraModal = ({ isOpen, onClose, ruStoreUrl = 'https://www.rustore.ru/catalog/app/ms.aura.walletapp.release' }) => {
+  const dialogRef = useRef(null);
+  const previouslyFocusedElementRef = useRef(null);
+
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) return undefined;
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
+      if (e.key === 'Tab') {
+        // Basic focus trap
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+        const focusable = dialog.querySelectorAll(
+          'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        } else if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      }
     };
 
-    document.body.style.overflow = 'hidden';
+    previouslyFocusedElementRef.current = document.activeElement;
+    bodyScrollLocker.lock();
     document.addEventListener('keydown', handleKeyDown);
 
+    // Set initial focus inside dialog
+    const toFocus = dialogRef.current?.querySelector('[data-autofocus]') || dialogRef.current;
+    if (toFocus) {
+      toFocus.focus({ preventScroll: true });
+    }
+
     return () => {
-      document.body.style.overflow = 'unset';
+      bodyScrollLocker.unlock();
       document.removeEventListener('keydown', handleKeyDown);
+      // Restore focus
+      if (previouslyFocusedElementRef.current && typeof previouslyFocusedElementRef.current.focus === 'function') {
+        previouslyFocusedElementRef.current.focus({ preventScroll: true });
+      }
     };
   }, [isOpen, onClose]);
 
@@ -38,13 +75,22 @@ const AuraModal = ({ isOpen, onClose, ruStoreUrl = 'https://www.rustore.ru/catal
     }
   };
 
+  const featureList = auraFeatures;
+  const screenshots = auraScreenshots;
+
   if (!isOpen) return null;
 
-  const screenshots = Array.from({ length: 4 }, (_, i) => `/images/projects/aura/Aura_${i + 1}.webp`);
-
-  return (
-    <div className={styles.modalOverlay} onClick={handleBackdropClick} role="dialog" aria-modal="true" aria-labelledby="aura-title">
-      <div className={styles.modal}>
+  const modal = (
+    <div className={styles.modalOverlay} onClick={handleBackdropClick}>
+      <div
+        className={styles.modal}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="aura-title"
+        aria-describedby="aura-subtitle"
+        ref={dialogRef}
+        tabIndex={-1}
+      >
         <button className={styles.closeButton} onClick={onClose} aria-label="Закрыть">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -58,20 +104,17 @@ const AuraModal = ({ isOpen, onClose, ruStoreUrl = 'https://www.rustore.ru/catal
               className={styles.logo}
               src="/images/projects/aura/Aura_Logo.webp"
               alt="Aura Wallet"
-              onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/logo.jpg'; }}
+              onError={(e) => setImageFallback(e, '/logo.jpg')}
               loading="lazy"
             />
             <h2 id="aura-title" className={styles.title}>Aura Wallet</h2>
-            <p className={styles.subtitle}>Ваш цифровой кошелёк в смартфоне</p>
+            <p id="aura-subtitle" className={styles.subtitle}>Ваш цифровой кошелёк в смартфоне</p>
           </div>
 
           <div className={styles.featuresGrid}>
-            <Feature icon={<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><rect x="4" y="7" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="2"/></svg>} text="Быстрые и безопасные платежи" />
-            <Feature icon={<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M3 10H21" stroke="currentColor" strokeWidth="2"/></svg>} text="Управление банковскими картами и счетами" />
-            <Feature icon={<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 16c3-6 7-6 10-2s6 2 6 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M4 20h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} text="Контроль расходов и аналитика трат" />
-            <Feature icon={<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 10l6-4 6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M6 14l6 4 6-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>} text="Удобные переводы между пользователями" />
-            <Feature icon={<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" strokeWidth="2"/><path d="M8 9h8M8 13h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>} text="Хранение истории операций" />
-            <Feature icon={<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4v6c0 5-4 7-8 8-4-1-8-3-8-8V7l8-4z" stroke="currentColor" strokeWidth="2"/><path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>} text="Защита данных и многоуровневая безопасность" />
+            {featureList.map((f) => (
+              <Feature key={f.key} icon={FeatureIcons[f.key]} text={f.text} />
+            ))}
           </div>
 
           <div className={styles.gallery}>
@@ -84,14 +127,14 @@ const AuraModal = ({ isOpen, onClose, ruStoreUrl = 'https://www.rustore.ru/catal
                   src={src}
                   alt={`Aura Wallet скриншот ${idx + 1}`}
                   loading="lazy"
-                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.style.display = 'none'; }}
+                  onError={(e) => setImageFallback(e, '/logo.jpg')}
                 />
               ))}
             </div>
           </div>
 
           <div className={styles.ctaRow}>
-            <a href={ruStoreUrl} target="_blank" rel="noopener noreferrer" className={`btn-primary ${styles.ctaButton}`} aria-label="RuStore">
+            <a href={ruStoreUrl} target="_blank" rel="noopener noreferrer" className={`btn-primary ${styles.ctaButton}`} aria-label="RuStore" data-autofocus>
               <RuStoreIcon />
               <span>RuStore</span>
             </a>
@@ -100,6 +143,14 @@ const AuraModal = ({ isOpen, onClose, ruStoreUrl = 'https://www.rustore.ru/catal
       </div>
     </div>
   );
+
+  return ReactDOM.createPortal(modal, document.body);
+};
+
+AuraModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  ruStoreUrl: PropTypes.string,
 };
 
 export default AuraModal; 
