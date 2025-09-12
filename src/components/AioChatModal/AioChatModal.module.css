@@ -60,6 +60,7 @@
   object-fit: contain;
   border-radius: var(--radius-lg);
   margin: 0 auto var(--spacing-md);
+  border: 1px solid var(--border-color);
 }
 
 .title {
